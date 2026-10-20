@@ -216,7 +216,6 @@ export default function Home() {
           <span className="operation-subtitle">
             EMPRUNT OBLIGATAIRE PAR APPEL PUBLIC À L'ÉPARGNE
           </span>
-          <span className="operation-tagline">Investir pour l'avenir…</span>
         </div>
 
         <nav className="top-links" aria-label="Navigation principale">
