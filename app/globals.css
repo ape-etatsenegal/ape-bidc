@@ -1248,7 +1248,7 @@ a { color: inherit; text-decoration: none; }
   .carousel img { height: 220px; }
   
   /* REMPLACEMENT DU CLAMP POUR LE CARROUSEL MOBILE */
-  .full-width-carousel img { height: 250px; } 
+
 
   .intro-copy { margin-top: 24px; font-size: 14.5px; padding-left: 16px; }
 
