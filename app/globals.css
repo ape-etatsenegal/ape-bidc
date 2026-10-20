@@ -63,7 +63,7 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: 2px;
   border-bottom: 1px solid var(--border);
 }
-@media (min-width: 640px) { .topbar { margin-top : -30px; } }
+@media (min-width: 640px) { .topbar { margin-top: -30px; } }
 
 @media (min-width: 640px) { .topbar { min-height: 70px; } }
 @media (min-width: 768px) { .topbar { min-height: 80px; } }
@@ -103,12 +103,12 @@ a { color: inherit; text-decoration: none; }
   padding-left: 20px;
   border-left: 3px solid var(--green);
   min-width: 0;
-    font-family: "Arial Black", Arial, Helvetica, sans-serif; 
+  font-family: "Arial Black", Arial, Helvetica, sans-serif; 
 }
 
 .operation-label {
   color: var(--green-dark);
-    font-family: "Arial Black", Arial, Helvetica, sans-serif; 
+  font-family: "Arial Black", Arial, Helvetica, sans-serif; 
   font-size: 17px;
   font-weight: 500;
   letter-spacing: 0;
@@ -117,7 +117,7 @@ a { color: inherit; text-decoration: none; }
 
 .operation-subtitle {
   color: var(--ink); 
-    font-family: "Arial Black", Arial, Helvetica, sans-serif; 
+  font-family: "Arial Black", Arial, Helvetica, sans-serif; 
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -258,18 +258,17 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   position: relative;
+  background-color: #f4faf6;
 }
 
-/* REMPLACEMENT DU CLAMP POUR L'IMAGE PRINCIPALE */
 .full-width-carousel img {
   display: block;
   width: 100%;
-  height: 400px; /* Hauteur fixe par défaut (mobile) */
-  object-fit: cover;
+  height: auto;
 }
 
 @media (min-width: 768px) {
-  .full-width-carousel img { height: 450px; }
+  .full-width-carousel img { height: 450px; } 
 }
 
 @media (min-width: 1024px) {
@@ -298,7 +297,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--green-dark);
   float: left;
   line-height: 0.9;
-  margin: 4px 5px 0 0;
+  margin: 4px 1px 0 0;
   font-family: "Playfair Display", Georgia, serif;
 }
 
@@ -320,21 +319,24 @@ a { color: inherit; text-decoration: none; }
 .home-right-column {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 12px;
 }
 
+/* CORRECTION : Le conteneur prend la taille exacte de l'image */
 .mid-banner-wrapper {
   width: 100%;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
+  display: flex; 
+  height: 300px;
 }
 
 .mid-banner-image {
-  display: block;
+  display: block; 
   width: 100%;
-  height: auto;
-  max-height: 400px;
+  height: auto; 
+  object-fit: cover;
 }
 
 .full-width-resources {  
@@ -733,7 +735,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 
-.resources- {
+.resources-header {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -764,7 +766,7 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
   color: #0d4429;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 26px; /* Remplacé le clamp() ici */
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 1.25;
@@ -927,7 +929,6 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 
-/* REMPLACEMENT DU CLAMP POUR L'IMAGE INTERNE */
 .section-hero img {
   display: block;
   width: 100%;
@@ -981,7 +982,6 @@ a { color: inherit; text-decoration: none; }
   background: var(--green);
 }
 
-/* REMPLACEMENT DU CLAMP POUR LE TITRE INTERNE */
 .section-page h1 {
   max-width: 680px;
   margin: 0;
@@ -1216,7 +1216,7 @@ a { color: inherit; text-decoration: none; }
     padding-top: 14px;
     align-items: center;
     text-align: center;
-  }
+  } 
 
   .operation-label { font-size: 15px; }
   .operation-subtitle { font-size: 10px; letter-spacing: 1px; text-align: center; }
@@ -1247,13 +1247,12 @@ a { color: inherit; text-decoration: none; }
   .main-content { order: 4; }
   .carousel img { height: 220px; }
   
-  /* REMPLACEMENT DU CLAMP POUR LE CARROUSEL MOBILE */
-
+  .full-width-carousel img { height: 250px; } 
 
   .intro-copy { margin-top: 24px; font-size: 14.5px; padding-left: 16px; }
 
   .resources { padding: 24px 16px; margin: 28px 0 28px; }
-  .resources- { margin-bottom: 24px; }
+  .resources-header { margin-bottom: 24px; }
   .resources-title { font-size: 20px; }
   .resources-grid { grid-template-columns: 1fr; gap: 16px; }
   
@@ -1265,7 +1264,6 @@ a { color: inherit; text-decoration: none; }
   .section-hero img { height: 220px; }
   .section-intro { margin: 18px 0 24px; font-size: 14.5px; }
   
-  /* AJOUT POUR LE TITRE MOBILE */
   .section-page h1 { font-size: 24px; }
 
   .section-card {

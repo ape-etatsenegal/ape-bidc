@@ -256,18 +256,6 @@ export default function Home() {
               src={slides[activeSlide].image}
               alt={slides[activeSlide].alt}
             />
-            <div className="carousel-dots" aria-label="Choisir une image">
-              {slides.map((slide, index) => (
-                <button
-                  aria-label={`Afficher : ${slide.title}`}
-                  aria-pressed={activeSlide === index}
-                  className={activeSlide === index ? "active" : ""}
-                  key={slide.title}
-                  onClick={() => setActiveSlide(index)}
-                  type="button"
-                />
-              ))}
-            </div>
           </div>
 
           <div className="intro-copy full-width-text">
