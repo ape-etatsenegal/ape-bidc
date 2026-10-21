@@ -184,3 +184,97 @@
 {"timestamp":"02:46:18.350","source":"Server","level":"LOG","message":"✓ Compiled in 81ms"}
 {"timestamp":"02:46:44.246","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
 {"timestamp":"02:47:40.611","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"03:00:23.738","source":"Server","level":"LOG","message":"✓ Compiled in 64ms"}
+{"timestamp":"03:01:16.101","source":"Server","level":"LOG","message":"✓ Compiled in 47ms"}
+{"timestamp":"03:01:16.642","source":"Browser","level":"ERROR","message":"./app/globals.css:1367:21\nError: Parsing CSS source code failed\n  1365 |   .footer-bottom { padding: 24px 16px 30px; }\n  1366 |   .footer-copyright { font-size: 12px; } \n> 1367 | } mid-banner-wrapper\n       |                     ^\n\nUnexpected end of input\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:1367:21\n  1365 |   .footer-bottom { padding: 24px 16px 30px; }\n  1366 |   .footer-copyright { font-size: 12px; } \n> 1367 | } mid-banner-wrapper\n       |                     ^\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:01:16.644","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:1367:21\\nError: Parsing CSS source code failed\\n  1365 |   .footer-bottom { padding: 24px 16px 30px; }\\n  1366 |   .footer-copyright { font-size: 12px; } \\n> 1367 | } mid-banner-wrapper\\n       |                     ^\\n\\nUnexpected end of input\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:1367:21\\n  1365 |   .footer-bottom { padding: 24px 16px 30px; }\\n  1366 |   .footer-copyright { font-size: 12px; } \\n> 1367 | } mid-banner-wrapper\\n       |                     ^\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:01:22.737","source":"Server","level":"LOG","message":"✓ Compiled in 54ms"}
+{"timestamp":"03:01:29.129","source":"Server","level":"LOG","message":"✓ Compiled in 67ms"}
+{"timestamp":"03:01:31.381","source":"Server","level":"LOG","message":"✓ Compiled in 23ms"}
+{"timestamp":"03:01:42.751","source":"Server","level":"LOG","message":"✓ Compiled in 86ms"}
+{"timestamp":"03:05:38.869","source":"Server","level":"LOG","message":"✓ Compiled in 63ms"}
+{"timestamp":"03:05:46.297","source":"Server","level":"LOG","message":"✓ Compiled in 25ms"}
+{"timestamp":"03:05:58.025","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"03:12:16.973","source":"Server","level":"LOG","message":"✓ Compiled in 16ms"}
+{"timestamp":"03:12:32.340","source":"Server","level":"LOG","message":"✓ Compiled in 21ms"}
+{"timestamp":"03:12:41.737","source":"Server","level":"LOG","message":"✓ Compiled in 59ms"}
+{"timestamp":"03:19:16.450","source":"Server","level":"LOG","message":"✓ Compiled in 61ms"}
+{"timestamp":"03:19:21.203","source":"Server","level":"LOG","message":"✓ Compiled in 73ms"}
+{"timestamp":"03:19:32.577","source":"Server","level":"LOG","message":"✓ Compiled in 68ms"}
+{"timestamp":"03:19:39.072","source":"Server","level":"LOG","message":"✓ Compiled in 64ms"}
+{"timestamp":"03:19:46.506","source":"Server","level":"LOG","message":"✓ Compiled in 61ms"}
+{"timestamp":"03:19:48.338","source":"Server","level":"LOG","message":"✓ Compiled in 62ms"}
+{"timestamp":"03:19:59.916","source":"Server","level":"LOG","message":"✓ Compiled in 56ms"}
+{"timestamp":"03:20:20.919","source":"Server","level":"LOG","message":"✓ Compiled in 31ms"}
+{"timestamp":"03:20:22.070","source":"Server","level":"LOG","message":"✓ Compiled in 23ms"}
+{"timestamp":"03:21:18.108","source":"Server","level":"LOG","message":"✓ Compiled in 25ms"}
+{"timestamp":"03:21:23.866","source":"Server","level":"LOG","message":"✓ Compiled in 53ms"}
+{"timestamp":"03:21:41.220","source":"Server","level":"LOG","message":"✓ Compiled in 48ms"}
+{"timestamp":"03:21:45.498","source":"Server","level":"LOG","message":"✓ Compiled in 53ms"}
+{"timestamp":"03:21:50.869","source":"Server","level":"LOG","message":"✓ Compiled in 67ms"}
+{"timestamp":"03:21:57.274","source":"Server","level":"LOG","message":"✓ Compiled in 65ms"}
+{"timestamp":"03:21:57.672","source":"Browser","level":"ERROR","message":"./app/globals.css:307:1\nError: Parsing CSS source code failed\n  305 |   height: 300px;\n  306 |   marg\n> 307 | } \n      | ^\n  308 |\n  309 | .mid-banner-image { \n  310 |   display: block;\n\nUnexpected end of input\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:307:1\n  305 |   height: 300px;\n  306 |   marg\n> 307 | } \n      | ^\n  308 |\n  309 | .mid-banner-image { \n  310 |   display: block;\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:21:57.673","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:307:1\\nError: Parsing CSS source code failed\\n  305 |   height: 300px;\\n  306 |   marg\\n> 307 | } \\n      | ^\\n  308 |\\n  309 | .mid-banner-image { \\n  310 |   display: block;\\n\\nUnexpected end of input\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:307:1\\n  305 |   height: 300px;\\n  306 |   marg\\n> 307 | } \\n      | ^\\n  308 |\\n  309 | .mid-banner-image { \\n  310 |   display: block;\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:21:57.682","source":"Browser","level":"ERROR","message":"./app/globals.css:315:1\nError: Parsing CSS source code failed\n  313 |   object-fit: cover;\n  314 |   margin\n> 315 | }\n      | ^\n  316 |\n  317 | .full-width-resources {  \n  318 |   margin: 0;\n\nUnexpected end of input\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:315:1\n  313 |   object-fit: cover;\n  314 |   margin\n> 315 | }\n      | ^\n  316 |\n  317 | .full-width-resources {  \n  318 |   margin: 0;\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:21:57.683","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:315:1\\nError: Parsing CSS source code failed\\n  313 |   object-fit: cover;\\n  314 |   margin\\n> 315 | }\\n      | ^\\n  316 |\\n  317 | .full-width-resources {  \\n  318 |   margin: 0;\\n\\nUnexpected end of input\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:315:1\\n  313 |   object-fit: cover;\\n  314 |   margin\\n> 315 | }\\n      | ^\\n  316 |\\n  317 | .full-width-resources {  \\n  318 |   margin: 0;\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:21:57.684","source":"Browser","level":"ERROR","message":"./app/globals.css:315:1\nError: Parsing CSS source code failed\n  313 |   object-fit: cover;\n  314 |   margin-t\n> 315 | }\n      | ^\n  316 |\n  317 | .full-width-resources {  \n  318 |   margin: 0;\n\nUnexpected end of input\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:315:1\n  313 |   object-fit: cover;\n  314 |   margin-t\n> 315 | }\n      | ^\n  316 |\n  317 | .full-width-resources {  \n  318 |   margin: 0;\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:21:57.686","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:315:1\\nError: Parsing CSS source code failed\\n  313 |   object-fit: cover;\\n  314 |   margin-t\\n> 315 | }\\n      | ^\\n  316 |\\n  317 | .full-width-resources {  \\n  318 |   margin: 0;\\n\\nUnexpected end of input\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:315:1\\n  313 |   object-fit: cover;\\n  314 |   margin-t\\n> 315 | }\\n      | ^\\n  316 |\\n  317 | .full-width-resources {  \\n  318 |   margin: 0;\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:21:57.688","source":"Browser","level":"ERROR","message":"./app/globals.css:315:1\nError: Parsing CSS source code failed\n  313 |   object-fit: cover;\n  314 |   margin-top\n> 315 | }\n      | ^\n  316 |\n  317 | .full-width-resources {  \n  318 |   margin: 0;\n\nUnexpected end of input\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:315:1\n  313 |   object-fit: cover;\n  314 |   margin-top\n> 315 | }\n      | ^\n  316 |\n  317 | .full-width-resources {  \n  318 |   margin: 0;\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:21:57.689","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:315:1\\nError: Parsing CSS source code failed\\n  313 |   object-fit: cover;\\n  314 |   margin-top\\n> 315 | }\\n      | ^\\n  316 |\\n  317 | .full-width-resources {  \\n  318 |   margin: 0;\\n\\nUnexpected end of input\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:315:1\\n  313 |   object-fit: cover;\\n  314 |   margin-top\\n> 315 | }\\n      | ^\\n  316 |\\n  317 | .full-width-resources {  \\n  318 |   margin: 0;\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:22:03.821","source":"Server","level":"LOG","message":"✓ Compiled in 49ms"}
+{"timestamp":"03:22:10.084","source":"Server","level":"LOG","message":"✓ Compiled in 76ms"}
+{"timestamp":"03:22:11.316","source":"Server","level":"LOG","message":"✓ Compiled in 76ms"}
+{"timestamp":"03:22:18.528","source":"Server","level":"LOG","message":"✓ Compiled in 57ms"}
+{"timestamp":"03:27:11.069","source":"Server","level":"LOG","message":"✓ Compiled in 77ms"}
+{"timestamp":"03:27:26.743","source":"Server","level":"LOG","message":"✓ Compiled in 85ms"}
+{"timestamp":"03:29:41.193","source":"Server","level":"LOG","message":"✓ Compiled in 66ms"}
+{"timestamp":"03:29:46.835","source":"Server","level":"LOG","message":"✓ Compiled in 71ms"}
+{"timestamp":"03:29:48.022","source":"Server","level":"LOG","message":"✓ Compiled in 58ms"}
+{"timestamp":"03:29:51.158","source":"Server","level":"LOG","message":"✓ Compiled in 83ms"}
+{"timestamp":"03:29:56.221","source":"Server","level":"LOG","message":"✓ Compiled in 30ms"}
+{"timestamp":"03:30:49.956","source":"Server","level":"LOG","message":"✓ Compiled in 39ms"}
+{"timestamp":"03:30:55.960","source":"Server","level":"LOG","message":"✓ Compiled in 55ms"}
+{"timestamp":"03:31:24.649","source":"Server","level":"LOG","message":"✓ Compiled in 33ms"}
+{"timestamp":"03:31:27.264","source":"Browser","level":"ERROR","message":"./app/globals.css:28:29\nError: Parsing CSS source code failed\n  26 | html { scroll-behavior: smooth; }\n  27 |\n> 28 | body {resource-image-wrapper\n     |                             ^\n  29 |   margin: 0;\n  30 |   background: #e8f0ea;\n  31 |   color: var(--ink);\n\nUnexpected token Ident(\"margin\")\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:28:29\n  26 | html { scroll-behavior: smooth; }\n  27 |\n> 28 | body {resource-image-wrapper\n     |                             ^\n  29 |   margin: 0;\n  30 |   background: #e8f0ea;\n  31 |   color: var(--ink);\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:31:27.265","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:28:29\\nError: Parsing CSS source code failed\\n  26 | html { scroll-behavior: smooth; }\\n  27 |\\n> 28 | body {resource-image-wrapper\\n     |                             ^\\n  29 |   margin: 0;\\n  30 |   background: #e8f0ea;\\n  31 |   color: var(--ink);\\n\\nUnexpected token Ident(\\\"margin\\\")\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:28:29\\n  26 | html { scroll-behavior: smooth; }\\n  27 |\\n> 28 | body {resource-image-wrapper\\n     |                             ^\\n  29 |   margin: 0;\\n  30 |   background: #e8f0ea;\\n  31 |   color: var(--ink);\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:31:34.184","source":"Server","level":"LOG","message":"✓ Compiled in 50ms"}
+{"timestamp":"03:31:37.576","source":"Server","level":"LOG","message":"✓ Compiled in 21ms"}
+{"timestamp":"03:31:59.085","source":"Server","level":"LOG","message":"✓ Compiled in 84ms"}
+{"timestamp":"03:32:03.543","source":"Server","level":"LOG","message":"✓ Compiled in 33ms"}
+{"timestamp":"03:32:08.992","source":"Server","level":"LOG","message":"✓ Compiled in 32ms"}
+{"timestamp":"03:32:11.883","source":"Server","level":"LOG","message":"✓ Compiled in 61ms"}
+{"timestamp":"03:32:34.230","source":"Server","level":"LOG","message":"✓ Compiled in 63ms"}
+{"timestamp":"03:32:36.761","source":"Server","level":"LOG","message":"✓ Compiled in 58ms"}
+{"timestamp":"03:32:39.270","source":"Server","level":"LOG","message":"✓ Compiled in 57ms"}
+{"timestamp":"03:32:43.647","source":"Server","level":"LOG","message":"✓ Compiled in 56ms"}
+{"timestamp":"03:33:39.987","source":"Server","level":"LOG","message":"✓ Compiled in 65ms"}
+{"timestamp":"03:33:49.797","source":"Server","level":"LOG","message":"✓ Compiled in 36ms"}
+{"timestamp":"03:35:42.591","source":"Server","level":"LOG","message":"✓ Compiled in 128ms"}
+{"timestamp":"03:35:43.605","source":"Server","level":"LOG","message":"✓ Compiled in 67ms"}
+{"timestamp":"03:35:47.133","source":"Server","level":"LOG","message":"✓ Compiled in 57ms"}
+{"timestamp":"03:35:49.775","source":"Server","level":"LOG","message":"✓ Compiled in 40ms"}
+{"timestamp":"03:38:03.484","source":"Server","level":"LOG","message":"✓ Compiled in 70ms"}
+{"timestamp":"03:38:09.403","source":"Server","level":"LOG","message":"✓ Compiled in 59ms"}
+{"timestamp":"03:38:30.999","source":"Server","level":"LOG","message":"✓ Compiled in 30ms"}
+{"timestamp":"03:38:32.106","source":"Browser","level":"ERROR","message":"./app/globals.css:782:34\nError: Parsing CSS source code failed\n  780 | }\n  781 |\n> 782 | .resource-image { operation-label\n      |                                  ^\n  783 |   display: block;\n  784 |   width: 100%;\n  785 |   height: 100%;\n\nUnexpected token Ident(\"display\")\n\nGenerated code of PostCSS transform of file content of app/globals.css:\n./app/globals.css:782:34\n  780 | }\n  781 |\n> 782 | .resource-image { operation-label\n      |                                  ^\n  783 |   display: block;\n  784 |   width: 100%;\n  785 |   height: 100%;\n\nImport trace:\n  Client Component Browser:\n    ./app/globals.css [Client Component Browser]\n    ./app/layout.tsx [Server Component] "}
+{"timestamp":"03:38:32.107","source":"Server","level":"ERROR","message":"[browser] \"./app/globals.css:782:34\\nError: Parsing CSS source code failed\\n  780 | }\\n  781 |\\n> 782 | .resource-image { operation-label\\n      |                                  ^\\n  783 |   display: block;\\n  784 |   width: 100%;\\n  785 |   height: 100%;\\n\\nUnexpected token Ident(\\\"display\\\")\\n\\nGenerated code of PostCSS transform of file content of app/globals.css:\\n./app/globals.css:782:34\\n  780 | }\\n  781 |\\n> 782 | .resource-image { operation-label\\n      |                                  ^\\n  783 |   display: block;\\n  784 |   width: 100%;\\n  785 |   height: 100%;\\n\\nImport trace:\\n  Client Component Browser:\\n    ./app/globals.css [Client Component Browser]\\n    ./app/layout.tsx [Server Component]\" \"\""}
+{"timestamp":"03:38:35.835","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"03:38:49.390","source":"Server","level":"LOG","message":"✓ Compiled in 68ms"}
+{"timestamp":"03:38:54.261","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"03:39:00.623","source":"Server","level":"LOG","message":"✓ Compiled in 73ms"}
+{"timestamp":"03:39:06.395","source":"Server","level":"LOG","message":"✓ Compiled in 60ms"}
+{"timestamp":"03:39:14.701","source":"Server","level":"LOG","message":"✓ Compiled in 74ms"}
+{"timestamp":"03:39:18.388","source":"Server","level":"LOG","message":"✓ Compiled in 59ms"}
+{"timestamp":"03:39:21.243","source":"Server","level":"LOG","message":"✓ Compiled in 34ms"}
+{"timestamp":"03:42:06.417","source":"Server","level":"LOG","message":"✓ Compiled in 56ms"}
+{"timestamp":"03:42:15.596","source":"Server","level":"LOG","message":"✓ Compiled in 62ms"}
+{"timestamp":"03:42:31.012","source":"Server","level":"LOG","message":"✓ Compiled in 52ms"}
+{"timestamp":"03:42:39.391","source":"Server","level":"LOG","message":"✓ Compiled in 65ms"}
+{"timestamp":"03:42:42.092","source":"Server","level":"LOG","message":"✓ Compiled in 73ms"}
+{"timestamp":"03:42:43.158","source":"Server","level":"LOG","message":"✓ Compiled in 19ms"}
+{"timestamp":"03:42:48.233","source":"Server","level":"LOG","message":"✓ Compiled in 75ms"}
+{"timestamp":"03:42:49.258","source":"Server","level":"LOG","message":"✓ Compiled in 54ms"}
+{"timestamp":"03:42:56.047","source":"Server","level":"LOG","message":"✓ Compiled in 65ms"}
+{"timestamp":"03:43:27.497","source":"Server","level":"LOG","message":"✓ Compiled in 91ms"}
+{"timestamp":"03:43:31.082","source":"Server","level":"LOG","message":"✓ Compiled in 59ms"}
+{"timestamp":"03:43:37.978","source":"Server","level":"LOG","message":"✓ Compiled in 27ms"}

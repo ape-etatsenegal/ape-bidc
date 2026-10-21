@@ -37,6 +37,18 @@ const navigation = [
 ];
 
 const resources = [
+    {
+    title: "Bulletin de souscription Senior",
+    image: "/bulletin-souscription.png",
+    alt: "Bulletin de souscription Senior",
+    pdf: "/pdf/bulletin-souscription-senior.pdf",
+  },
+  {
+    title: "Bulletin de souscription Junior",
+    image: "/bulletin-souscription.png",
+    alt: "Bulletin de souscription Junior",
+    pdf: "/pdf/bulletin-souscription-junior.pdf",
+  },
   {
     title: "Dépliant de l'opération",
     image: "/depliant.png",
@@ -48,18 +60,6 @@ const resources = [
     image: "/note-information.png",
     alt: "Note d'information",
     pdf: "/pdf/note-information.pdf",
-  },
-  {
-    title: "Bulletin de souscription senior",
-    image: "/bulletin-souscription.png",
-    alt: "Bulletin de souscription senior",
-    pdf: "/pdf/bulletin-souscription-senior.pdf",
-  },
-  {
-    title: "Bulletin de souscription junior",
-    image: "/bulletin-souscription.png",
-    alt: "Bulletin de souscription junior",
-    pdf: "/pdf/bulletin-souscription-junior.pdf",
   },
 ];
 
