@@ -14,6 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        {/* Injection manuelle du favicon */}
+        <link rel="icon" href="/logo-bidc.jpg" type="image/jpeg" />
+        <link rel="apple-touch-icon" href="/logo-bidc.jpg" />
+      </head>
       <body>{children}</body>
     </html>
   );
