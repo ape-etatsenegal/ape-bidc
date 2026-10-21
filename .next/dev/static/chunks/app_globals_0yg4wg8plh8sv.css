@@ -316,7 +316,7 @@ a {
 
 .home-full-layout {
   flex-direction: column;
-  gap: 6px;
+  gap: 1px;
   display: flex;
 }
 
@@ -325,32 +325,15 @@ a {
   width: 100%;
   box-shadow: var(--shadow-lg);
   background-color: #f4faf6;
+  margin-top: -20px;
   position: relative;
   overflow: hidden;
 }
 
 .full-width-carousel img {
+  object-fit: contain;
   width: 100%;
-  height: auto;
   display: block;
-}
-
-@media (min-width: 768px) {
-  .full-width-carousel img {
-    height: 450px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .full-width-carousel img {
-    height: 500px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .full-width-carousel img {
-    height: 550px;
-  }
 }
 
 .full-width-text {
@@ -361,7 +344,7 @@ a {
   border-left: 4px solid var(--green);
   background: #fff;
   padding: 15px;
-  font-size: 16px;
+  font-size: 10px;
   line-height: 1.7;
 }
 
@@ -1371,11 +1354,11 @@ a {
     text-align: center;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    padding-bottom: 16px;
+    gap: 1px;
+    padding-bottom: 1px;
   }
 
-  .operation-title {
+  marquee-bar .operation-title {
     border-left: 0;
     border-top: 2px solid var(--green);
     text-align: center;
@@ -1472,7 +1455,7 @@ a {
   }
 
   .full-width-carousel img {
-    height: 250px;
+    height: 150px;
   }
 
   .intro-copy {
