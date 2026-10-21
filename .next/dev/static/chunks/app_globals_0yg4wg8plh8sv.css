@@ -1,18 +1,18 @@
 @import "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap";
 /* [project]/app/globals.css [app-client] (css) */
 :root {
-  --green: #178746;
-  --green-dark: #0d5c2e;
-  --green-deep: #083d1e;
-  --green-mid: #65ad83;
-  --green-soft: #e3f1e8;
-  --green-tint: #f4faf6;
+  --green: #078345;
+  --green-dark: #078345;
+  --green-deep: #078345;
+  --green-mid: #078345;
+  --green-soft: #d6ece1;
+  --green-tint: #f0f8f4;
   --red: #bd3045;
   --red-dark: #942435;
   --gold: #d4af37;
   --ink: #1f2d24;
   --ink-soft: #526258;
-  --border: #1787461a;
+  --border: #0783451a;
   --shadow-sm: 0 1px 2px #102a1b0f, 0 2px 6px #102a1b0a;
   --shadow-md: 0 4px 12px #102a1b14, 0 2px 4px #102a1b0a;
   --shadow-lg: 0 12px 32px #102a1b1a, 0 4px 8px #102a1b0d;
@@ -303,7 +303,7 @@ a {
   border-radius: var(--radius-lg);
   width: 100%;
   box-shadow: var(--shadow-lg);
-  background-color: #f4faf6;
+  background-color: var(--green-tint);
   margin-top: -8px;
   position: relative;
   overflow: hidden;
@@ -321,6 +321,7 @@ a {
   max-width: 100%;
   box-shadow: var(--shadow-sm);
   border-left: 4px solid var(--green);
+  border-right: 4px solid var(--green);
   background: #fff;
   padding: 1px 14px;
   font-size: 16px;
@@ -414,13 +415,13 @@ a {
   display: flex;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 12px #17874640;
+  box-shadow: 0 4px 12px #07834540;
 }
 
 .home-link:hover {
   background: var(--green-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px #17874659;
+  box-shadow: 0 8px 20px #07834559;
 }
 
 .home-link.active {
@@ -467,14 +468,14 @@ a {
 .side-link:hover {
   background: var(--green-tint);
   color: var(--green-dark);
-  border-color: #17874626;
+  border-color: #07834526;
   transform: translateX(4px);
 }
 
 .side-link:hover:before {
   background: var(--green);
   transform: scale(1.2);
-  box-shadow: 0 0 0 4px #17874626;
+  box-shadow: 0 0 0 4px #07834526;
 }
 
 .side-link.active {
@@ -482,13 +483,13 @@ a {
   border-color: var(--green);
   color: var(--green-dark);
   font-weight: 700;
-  box-shadow: 0 2px 8px #1787461f;
+  box-shadow: 0 2px 8px #0783451f;
 }
 
 .side-link.active:before {
   background: var(--green);
   transform: scale(1.3);
-  box-shadow: 0 0 0 4px #17874633;
+  box-shadow: 0 0 0 4px #07834533;
 }
 
 .side-link:focus-visible, .home-link:focus-visible {
@@ -610,7 +611,7 @@ a {
   letter-spacing: 0;
   transition: all .25s var(--transition);
   background: #fafdfb;
-  border: 1.5px solid #17874626;
+  border: 1.5px solid #07834526;
   outline: none;
   font-family: DM Sans, Arial, sans-serif;
   font-size: 14.5px;
@@ -631,13 +632,13 @@ a {
 
 .contact-form input:hover, .contact-form textarea:hover {
   background: #fff;
-  border-color: #17874659;
+  border-color: #07834559;
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
   border-color: var(--green);
   background: #fff;
-  box-shadow: 0 0 0 4px #1787461f;
+  box-shadow: 0 0 0 4px #0783451f;
 }
 
 .contact-form button {
@@ -654,13 +655,13 @@ a {
   padding: 15px 20px;
   font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 6px 16px #17874638;
+  box-shadow: 0 6px 16px #07834538;
 }
 
 .contact-form button:hover {
   background: var(--green-dark);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px #17874652;
+  box-shadow: 0 10px 24px #07834552;
 }
 
 .contact-feedback {
@@ -718,11 +719,11 @@ a {
 }
 
 .carousel-dots button {
+  background: var(--green-soft);
   cursor: pointer;
   width: 26px;
   height: 8px;
   transition: all .3s var(--transition);
-  background: #b8d9c4;
   border: 1.5px solid #0000;
   border-radius: 4px;
 }
@@ -777,7 +778,7 @@ a {
 }
 
 .resources-title {
-  color: #0d4429;
+  color: var(--green-dark);
   letter-spacing: -.3px;
   margin: 0;
   font-family: Playfair Display, Georgia, serif;
@@ -993,9 +994,9 @@ a {
 }
 
 .section-page h1 {
-  color: #0d4429;
-  letter-spacing: -.5px;
   max-width: 680px;
+  color: var(--green-dark);
+  letter-spacing: -.5px;
   margin: 0;
   font-family: Playfair Display, Georgia, serif;
   font-size: 28px;
@@ -1031,8 +1032,8 @@ a {
 .section-card {
   border-left: 3px solid var(--green);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--green-tint);
   transition: all .3s var(--transition);
-  background: #f4faf6;
   grid-template-columns: 52px minmax(0, 1fr);
   gap: 18px;
   padding: 22px;
@@ -1054,7 +1055,7 @@ a {
 }
 
 .section-card h2 {
-  color: #1a4d30;
+  color: var(--green-dark);
   margin: 0 0 8px;
   font-family: Playfair Display, Georgia, serif;
   font-size: 19px;
@@ -1086,7 +1087,7 @@ a {
   background: var(--green);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px #17874640;
+  box-shadow: 0 4px 12px #07834540;
 }
 
 @keyframes section-slide-in {
