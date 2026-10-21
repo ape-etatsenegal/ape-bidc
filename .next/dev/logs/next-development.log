@@ -176,3 +176,11 @@
 {"timestamp":"01:48:16.808","source":"Server","level":"LOG","message":"✓ Compiled in 13ms"}
 {"timestamp":"01:48:22.838","source":"Server","level":"LOG","message":"✓ Compiled in 12ms"}
 {"timestamp":"01:48:36.544","source":"Server","level":"LOG","message":"✓ Compiled in 12ms"}
+{"timestamp":"02:37:38.094","source":"Server","level":"LOG","message":"✓ Compiled in 133ms"}
+{"timestamp":"02:37:54.514","source":"Server","level":"LOG","message":"✓ Compiled in 35ms"}
+{"timestamp":"02:38:30.100","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:38:54.033","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:39:00.454","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:46:18.350","source":"Server","level":"LOG","message":"✓ Compiled in 81ms"}
+{"timestamp":"02:46:44.246","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"02:47:40.611","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}

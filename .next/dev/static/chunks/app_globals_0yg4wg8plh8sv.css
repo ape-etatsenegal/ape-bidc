@@ -2,9 +2,9 @@
 /* [project]/app/globals.css [app-client] (css) */
 :root {
   --green: #078345;
-  --green-dark: #078345;
-  --green-deep: #078345;
-  --green-mid: #078345;
+  --green-dark: #056635;
+  --green-deep: #044727;
+  --green-mid: #4fa77a;
   --green-soft: #d6ece1;
   --green-tint: #f0f8f4;
   --red: #bd3045;
@@ -912,6 +912,156 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .resource-card {
     animation: none;
+  }
+}
+
+.subscription-page {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  display: flex;
+}
+
+.subscription-header {
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.subscription-title {
+  color: var(--green-dark);
+  letter-spacing: -.5px;
+  margin: 0 0 16px;
+  font-family: Playfair Display, Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.subscription-intro {
+  color: var(--ink-soft);
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.subscription-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+}
+
+.subscription-card {
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-md);
+  color: inherit;
+  transition: all .3s var(--transition);
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.subscription-card:before {
+  content: "";
+  background: var(--green);
+  opacity: 0;
+  width: 100%;
+  height: 4px;
+  transition: opacity .3s var(--transition);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.subscription-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--green);
+  transform: translateY(-6px);
+}
+
+.subscription-card:hover:before {
+  opacity: 1;
+}
+
+.subscription-card-icon {
+  background: var(--green-tint);
+  width: 64px;
+  height: 64px;
+  color: var(--green);
+  transition: all .3s var(--transition);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.subscription-card:hover .subscription-card-icon {
+  background: var(--green);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.subscription-card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.subscription-card-title {
+  color: var(--green-dark);
+  margin: 0 0 12px;
+  font-family: Playfair Display, Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.subscription-card-desc {
+  color: var(--ink-soft);
+  max-width: 260px;
+  margin: 0 0 24px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.subscription-card-cta {
+  background: var(--green);
+  color: #fff;
+  transition: all .3s var(--transition);
+  letter-spacing: .3px;
+  border-radius: 999px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+}
+
+.subscription-card:hover .subscription-card-cta {
+  background: var(--green-dark);
+  gap: 10px;
+}
+
+@media (max-width: 620px) {
+  .subscription-title {
+    font-size: 28px;
+  }
+
+  .subscription-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .subscription-card {
+    padding: 30px 20px;
   }
 }
 

@@ -44,16 +44,22 @@ const resources = [
     pdf: "/pdf/depliant.pdf",
   },
   {
-    title: "Documentation",
+    title: "Note d'information",
     image: "/note-information.png",
-    alt: "Documentation",
+    alt: "Note d'information",
     pdf: "/pdf/note-information.pdf",
   },
   {
-    title: "Bulletin de souscription",
+    title: "Bulletin de souscription senior",
     image: "/bulletin-souscription.png",
-    alt: "Bulletin de souscription",
-    pdf: "/pdf/bulletin-souscription.pdf",
+    alt: "Bulletin de souscription senior",
+    pdf: "/pdf/bulletin-souscription-senior.pdf",
+  },
+  {
+    title: "Bulletin de souscription junior",
+    image: "/bulletin-souscription.png",
+    alt: "Bulletin de souscription junior",
+    pdf: "/pdf/bulletin-souscription-junior.pdf",
   },
 ];
 
@@ -98,7 +104,7 @@ const operationPages = [
       },
       {
         title: "À retenir",
-        text: "Avant toute décision, prenez connaissance de l'ensemble des caractéristiques et des conditions décrites dans la documentation.",
+        text: "Avant toute décision, prenez connaissance de l'ensemble des caractéristiques et des conditions décrites dans la note d'information.",
       },
     ],
   },
@@ -109,15 +115,15 @@ const operationPages = [
     imageAlt: "Espace de travail lumineux",
     eyebrow: "Document de référence",
     intro:
-      "La documentation est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
+      "La note d'information est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
     blocks: [
       {
-        title: "Consulter la documentation",
+        title: "Consulter la note d'information",
         text: "Les informations détaillées de l'opération sont destinées à être regroupées dans cette rubrique. Référez-vous aux documents officiels avant toute souscription.",
       },
       {
         title: "Information importante",
-        text: "Les éléments présentés sur ce site ne remplacent pas la lecture attentive de la documentation officielle de l'opération.",
+        text: "Les éléments présentés sur ce site ne remplacent pas la lecture attentive de la note d'information officielle de l'opération.",
       },
     ],
   },
@@ -177,6 +183,7 @@ function HomeIcon() {
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activePage, setActivePage] = useState<number | null>(null);
+  const [showSubscriptionPage, setShowSubscriptionPage] = useState(false);
   const [contactReady, setContactReady] = useState(false);
 
   function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
@@ -196,11 +203,14 @@ export default function Home() {
   }
 
   function handleSubscribeClick() {
-    window.open("/pdf/bulletin-souscription.pdf", "_blank");
+    setActivePage(null);
+    setShowSubscriptionPage(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleHomeClick() {
     setActivePage(null);
+    setShowSubscriptionPage(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -248,7 +258,83 @@ export default function Home() {
         </div>
       </div>
 
-      {activePage === null ? (
+      {/* ===== VUE COMMENT SOUSCRIRE ===== */}
+      {showSubscriptionPage ? (
+        <article className="section-page" key="subscription-page">
+          <div className="subscription-page">
+            <div className="subscription-header">
+              <h1 className="subscription-title">Je souscris</h1>
+              <p className="subscription-intro">
+                Choisissez le type de bulletin de souscription qui vous
+                correspond. Chaque document contient les informations
+                nécessaires pour finaliser votre souscription.
+              </p>
+            </div>
+
+            <div className="subscription-grid">
+              <a
+                href="/pdf/bulletin-souscription-senior.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="subscription-card"
+              >
+                <div className="subscription-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </div>
+                <h2 className="subscription-card-title">Bulletin Senior</h2>
+                <p className="subscription-card-desc">
+                  Pour les souscripteurs institutionnels et les investisseurs
+                  avertis.
+                </p>
+                <span className="subscription-card-cta">
+                  Télécharger le PDF ↓
+                </span>
+              </a>
+
+              <a
+                href="/pdf/bulletin-souscription-junior.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="subscription-card"
+              >
+                <div className="subscription-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </div>
+                <h2 className="subscription-card-title">Bulletin Junior</h2>
+                <p className="subscription-card-desc">
+                  Pour les souscripteurs particuliers et les nouveaux
+                  investisseurs.
+                </p>
+                <span className="subscription-card-cta">
+                  Télécharger le PDF ↓
+                </span>
+              </a>
+            </div>
+
+            <button
+              className="section-back"
+              onClick={handleHomeClick}
+              type="button"
+              style={{ marginTop: "40px" }}
+            >
+              ← Retour à l'accueil
+            </button>
+          </div>
+        </article>
+      ) : activePage === null ? (
+        /* ===== VUE ACCUEIL ===== */
         <div className="home-full-layout">
           <div className="carousel full-width-carousel">
             <img
@@ -275,8 +361,8 @@ export default function Home() {
                   aria-label="Navigation du site"
                 >
                   <button
-                    aria-current={activePage === null ? "page" : undefined}
-                    className={`home-link${activePage === null ? " active" : ""}`}
+                    aria-current={activePage === null && !showSubscriptionPage ? "page" : undefined}
+                    className={`home-link${activePage === null && !showSubscriptionPage ? " active" : ""}`}
                     onClick={handleHomeClick}
                     type="button"
                   >
@@ -291,6 +377,7 @@ export default function Home() {
                       key={item}
                       onClick={() => {
                         setActivePage(index);
+                        setShowSubscriptionPage(false);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                       type="button"
@@ -418,12 +505,13 @@ export default function Home() {
           </div>
         </div>
       ) : (
+        /* ===== VUES DES PAGES INTERNES DU MENU ===== */
         <div className="page-columns">
           <aside className="sidebar">
             <nav className="side-navigation" aria-label="Navigation du site">
               <button
-                aria-current={activePage === null ? "page" : undefined}
-                className={`home-link${activePage === null ? " active" : ""}`}
+                aria-current={activePage === null && !showSubscriptionPage ? "page" : undefined}
+                className={`home-link${activePage === null && !showSubscriptionPage ? " active" : ""}`}
                 onClick={handleHomeClick}
                 type="button"
               >
@@ -438,6 +526,7 @@ export default function Home() {
                   key={item}
                   onClick={() => {
                     setActivePage(index);
+                    setShowSubscriptionPage(false);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
                   type="button"

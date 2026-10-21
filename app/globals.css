@@ -1,14 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
 
 :root {
-  /* 👇 Couleurs vertes remplacées par #078345 et ses nuances */
-  --green: #078345;        /* Vert principal */
-  --green-dark: #078345;   /* Vert foncé */
-  --green-deep: #078345;   /* Vert très foncé */
-  --green-mid: #078345;    /* Vert moyen */
-  --green-soft: #d6ece1;   /* Vert très clair */
-  --green-tint: #f0f8f4;   /* Vert presque blanc */
-  
+  --green: #078345;
+  --green-dark: #056635;
+  --green-deep: #044727;
+  --green-mid: #4fa77a;
+  --green-soft: #d6ece1;
+  --green-tint: #f0f8f4;
   --red: #bd3045;
   --red-dark: #942435;
   --gold: #d4af37;
@@ -51,7 +49,7 @@ a { color: inherit; text-decoration: none; }
     0 24px 60px -20px rgb(16 42 27 / 15%);
 }
 
-/* ===== TOPBAR (hauteur réduite) ===== */  
+/* ===== TOPBAR ===== */  
 .topbar {
   display: flex;
   align-items: center;
@@ -68,7 +66,7 @@ a { color: inherit; text-decoration: none; }
 @media (min-width: 1280px) { .topbar { min-height: 65px; } }
 @media (min-width: 1536px) { .topbar { min-height: 70px; } }
 
-/* ===== LOGO BIDC (taille réduite) ===== */
+/* ===== LOGO BIDC ===== */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -155,7 +153,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-2px);
 }
 
-/* ===== BANDEAU DÉFILANT (hauteur réduite) ===== */
+/* ===== BANDEAU DÉFILANT ===== */
 .marquee-bar {
   position: relative;
   width: calc(100% + 64px);
@@ -844,6 +842,156 @@ a { color: inherit; text-decoration: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .resource-card { animation: none; }
+}
+
+/* ===== NOUVELLE PAGE : JE SOUSCRIS ===== */
+.subscription-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.subscription-header {
+  max-width: 700px;
+  margin-bottom: 48px;
+}
+
+.subscription-title {
+  color: var(--green-dark);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  letter-spacing: -0.5px;
+}
+
+.subscription-intro {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.subscription-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.subscription-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.subscription-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--green);
+  opacity: 0;
+  transition: opacity 0.3s var(--transition);
+}
+
+.subscription-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--green);
+}
+
+.subscription-card:hover::before {
+  opacity: 1;
+}
+
+.subscription-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--green-tint);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.3s var(--transition);
+}
+
+.subscription-card:hover .subscription-card-icon {
+  background: var(--green);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.subscription-card-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.subscription-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin: 0 0 12px;
+}
+
+.subscription-card-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+  max-width: 260px;
+}
+
+.subscription-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 999px;
+  transition: all 0.3s var(--transition);
+  letter-spacing: 0.3px;
+}
+
+.subscription-card:hover .subscription-card-cta {
+  background: var(--green-dark);
+  gap: 10px;
+}
+
+/* Responsive pour la page de souscription */
+@media (max-width: 620px) {
+  .subscription-title {
+    font-size: 28px;
+  }
+  .subscription-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .subscription-card {
+    padding: 30px 20px;
+  }
 }
 
 /* ===== SECTION PAGES INTERNES ===== */
