@@ -1,28 +1,37 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const CONTACT_EMAIL = "fctc-bidc-ebid@contact.sn";
+const LANGUAGE_STORAGE_KEY = "ape-bidc-language";
+
+type Language = "fr" | "en";
 
 const slides = [
   {
     image: "/Emprunt FCTC BIDC 2026 5.png",
+    imageEn: "/Emprunt FCTC BIDC 2026 5 Ang.png",
     alt: "Installation industrielle et infrastructures énergétiques",
     title: "Des infrastructures pour demain",
   },
   {
     image: "/images.png",
+    imageEn: "/images.png",
     alt: "Lignes électriques au coucher du soleil",
     title: "L'énergie au cœur du développement",
   },
   {
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85",
+    imageEn:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85",
     alt: "Architecture moderne au cœur de la ville",
     title: "Des villes qui se transforment",
   },
   {
     image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85",
+    imageEn:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85",
     alt: "Espace de travail lumineux",
     title: "Construire des opportunités durables",
@@ -37,7 +46,7 @@ const navigation = [
 ];
 
 const resources = [
-    {
+  {
     title: "Bulletin de souscription Senior",
     image: "/bulletin-souscription.png",
     alt: "Bulletin de souscription Senior",
@@ -82,7 +91,7 @@ const operationPages = [
     blocks: [
       {
         title: "Le cadre",
-        text: "L'opération s'inscrit dans la mission de la BDEAC, qui accompagne le développement économique et social des pays de la Communauté Économique et Monétaire de l'Afrique Centrale.",
+        text: "L'opération s'inscrit dans la mission de la BIDC, Institution de Financement du Développement au service des 15 États de l'Afrique de l'Ouest dédiée au financement de projets structurants favorisant la croissance économique, l'intégration régionale et le développement durable de la sous-région.",
       },
       {
         title: "L'objet",
@@ -92,8 +101,9 @@ const operationPages = [
   },
   {
     title: navigation[1],
-    image: "/images.png",
-    imageAlt: "Lignes électriques au coucher du soleil",
+    image:
+      "caracteristiques.png", // 👈 Image modifiée (documents financiers)
+    imageAlt: "Documents financiers et caractéristiques",
     eyebrow: "Informations clés",
     intro:
       "Les caractéristiques de l'opération rassemblent les éléments utiles pour en comprendre le fonctionnement et les modalités.",
@@ -111,8 +121,8 @@ const operationPages = [
   {
     title: navigation[2],
     image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85",
-    imageAlt: "Espace de travail lumineux",
+      "documentation.png", // 👈 Image modifiée (documentation officielle)
+    imageAlt: "Documentation officielle",
     eyebrow: "Document de référence",
     intro:
       "La note d'information est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
@@ -131,29 +141,238 @@ const operationPages = [
     title: navigation[3],
     image:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85",
-    imageAlt: "Détails d'une technologie numérique",
-    eyebrow: "Images et ressources",
+    imageAlt: "Ressources institutionnelles",
+    eyebrow: "Ressources",
     intro:
-      "Retrouvez dans la médiathèque les contenus visuels et les ressources liés à la BIDC et à l'opération.",
+      "Retrouvez les ressources institutionnelles et les documents de référence liés à la BIDC.", // 👈 Texte modifié
     blocks: [
       {
-        title: "La BIDC en images",
-        text: "Les photos, vidéos et autres ressources de la médiathèque seront présentées dans cet espace.",
+        title: "Brochure institutionnelle", // 👈 Nouveau bloc
+        text: "Découvrez la BIDC à travers sa brochure institutionnelle présentant sa mission, son organisation et ses réalisations.",
       },
       {
-        title: "À propos de la Banque",
-        text: "La BIDC accompagne les projets qui contribuent au développement économique et social de la sous-région.",
+        title: "Stratégie GRO",
+        text: "Consultez la Stratégie GRO de la BIDC pour en savoir plus sur ses orientations stratégiques.",
+      },
+      {
+        title: "Rapport annuel",
+        text: "Accédez au rapport annuel de la BIDC pour suivre ses activités, ses résultats financiers et son impact sur le développement de la sous-région.",
       },
     ],
   },
 ];
 
-function Brand({ onHome }: { onHome: () => void }) {
+const operationPagesEnglish = [
+  {
+    title: "Framework and purpose of the operation",
+    image: operationPages[0].image,
+    imageAlt: "Industrial and energy infrastructure",
+    eyebrow: "About the operation",
+    intro:
+      "This section explains the context and purpose of the operation, helping the public understand its framework and contribution to financing development in Central Africa.",
+    blocks: [
+      {
+        title: "Framework",
+        text: "The operation is part of BIDC's mission, a Development Finance Institution serving the 15 West African States dedicated to financing structuring projects that promote economic growth, regional integration and sustainable development in the sub-region.", // 👈 Texte corrigé
+      },
+      {
+        title: "Purpose",
+        text: "Find the essential information here to understand the operation's purpose and the principles that govern it.",
+      },
+    ],
+  },
+  {
+    title: "Key features of the operation",
+    image: operationPages[1].image,
+    imageAlt: "Financial documents and key features",
+    eyebrow: "Key information",
+    intro:
+      "The operation's key features bring together the information needed to understand how it works and its terms.",
+    blocks: [
+      {
+        title: "Terms of the operation",
+        text: "Please refer to the official operation documents for the applicable terms, participation requirements and practical information.",
+      },
+      {
+        title: "Key points",
+        text: "Before making any decision, review all the features and conditions described in the information memorandum.",
+      },
+    ],
+  },
+  {
+    title: "Documentation",
+    image: operationPages[2].image,
+    imageAlt: "Official documentation",
+    eyebrow: "Reference document",
+    intro:
+      "The information memorandum is the reference document outlining the terms, procedures and information relating to the operation.",
+    blocks: [
+      {
+        title: "Read the information memorandum",
+        text: "Detailed information about the operation is provided in this section. Please consult the official documents before subscribing.",
+      },
+      {
+        title: "Important information",
+        text: "The information presented on this website is not a substitute for carefully reading the operation's official information memorandum.",
+      },
+    ],
+  },
+  {
+    title: "Media library",
+    image: operationPages[3].image,
+    imageAlt: "Institutional resources",
+    eyebrow: "Resources",
+    intro: "Discover the institutional resources and reference documents related to BIDC.", // 👈 Texte modifié
+    blocks: [
+      {
+        title: "Institutional Brochure",
+        text: "Learn about BIDC through its institutional brochure presenting its mission, organization, and achievements.",
+      },
+      {
+        title: "GRO Strategy",
+        text: "Consult BIDC's GRO Strategy to learn more about its strategic orientations.",
+      },
+      {
+        title: "Annual Report",
+        text: "Access BIDC's annual report to track its activities, financial results, and impact on the sub-region's development.",
+      },
+    ],
+  },
+];
+
+const translations = {
+  fr: {
+    languageLabel: "Langue",
+    switchToEnglish: "Passer le site en anglais",
+    operationLabel: "Fonds Commun de Titrisation de Créances",
+    operationSubtitle: "EMPRUNT OBLIGATAIRE PAR APPEL PUBLIC À L'ÉPARGNE",
+    topNavigation: "Navigation principale",
+    subscribe: "Je souscris",
+    announcements: "Annonces",
+    slideAlts: slides.map((slide) => slide.alt),
+    marqueeItems,
+    subscriptionTitle: "Je souscris",
+    subscriptionIntro:
+      "Choisissez le type de bulletin de souscription qui vous correspond. Chaque document contient les informations nécessaires pour finaliser votre souscription.",
+    seniorBulletin: "Bulletin Senior",
+    seniorDescription:
+      "Pour les souscripteurs institutionnels et les investisseurs avertis.",
+    juniorBulletin: "Bulletin Junior",
+    juniorDescription:
+      "Pour les souscripteurs particuliers et les nouveaux investisseurs.",
+    downloadPdf: "Télécharger le PDF ↓",
+    backHome: "← Retour à l'accueil",
+    siteNavigation: "Navigation du site",
+    home: "Accueil",
+    contact: "Nous contacter",
+    lastName: "Nom",
+    firstName: "Prénom",
+    email: "E-mail",
+    message: "Message",
+    yourMessage: "Votre message",
+    send: "Envoyer",
+    contactFeedback:
+      "Votre application de messagerie va s'ouvrir avec votre message prérempli.",
+    directEmail: "Ou écrivez-nous directement :",
+    midBannerAlt: "Bannière intermédiaire",
+    resourcesLabel: "Documents et ressources",
+    resourcesEyebrow: "Documents & Ressources",
+    resourcesTitle: "Tout ce qu'il faut savoir sur l'opération",
+    resourcesIntro:
+      "Consultez les documents officiels et les informations pratiques pour préparer votre souscription en toute confiance.",
+    resourceTitles: resources.map((resource) => resource.title),
+    footerBannerAlt: "Bannière BIDC",
+    allRightsReserved: "Tous droits réservés.",
+    footerDescription:
+      "Fonds Commun de Titrisation de Créances - Emprunt Obligataire par Appel Public à l'Épargne.",
+    emailSubject: "Message du site BDEAC",
+    lastNamePrefix: "Nom",
+    firstNamePrefix: "Prénom",
+    emailPrefix: "E-mail",
+    intro:
+      "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.", // 👈 Texte modifié
+  },
+  en: {
+    languageLabel: "Language",
+    switchToEnglish: "Switch the website to English",
+    switchToFrench: "Switch the website to French",
+    operationLabel: "Debt Securitisation Mutual Fund",
+    operationSubtitle: "BOND ISSUE THROUGH A PUBLIC OFFERING",
+    topNavigation: "Main navigation",
+    subscribe: "Subscribe",
+    announcements: "Announcements",
+    slideAlts: [
+      "Industrial facilities and energy infrastructure",
+      "Power lines at sunset",
+      "Modern architecture in the heart of the city",
+      "Bright workspace",
+    ],
+    marqueeItems: [
+      "📢 Subscription period open — 28 October to 30 November 2026",
+      "💰 Issue price: CFAF 10,000 per unit",
+      "📍 Subscribe through your partner brokerage firm",
+      "📞 More information: fctc-bidc-ebid@contact.sn",
+    ],
+    navigation: [
+      "Framework and purpose of the operation",
+      "Key features of the operation",
+      "Documentation",
+      "Media library",
+    ],
+    subscriptionTitle: "Subscribe",
+    subscriptionIntro:
+      "Choose the subscription form that suits you. Each document contains the information you need to complete your subscription.",
+    seniorBulletin: "Senior subscription form",
+    seniorDescription:
+      "For institutional subscribers and sophisticated investors.",
+    juniorBulletin: "Junior subscription form",
+    juniorDescription: "For individual subscribers and new investors.",
+    downloadPdf: "Download PDF ↓",
+    backHome: "← Back to home",
+    siteNavigation: "Website navigation",
+    home: "Home",
+    contact: "Contact us",
+    lastName: "Last name",
+    firstName: "First name",
+    email: "Email",
+    message: "Message",
+    yourMessage: "Your message",
+    send: "Send",
+    contactFeedback:
+      "Your email application will open with your message pre-filled.",
+    directEmail: "Or email us directly:",
+    midBannerAlt: "Promotional banner",
+    resourcesLabel: "Documents and resources",
+    resourcesEyebrow: "Documents & Resources",
+    resourcesTitle: "Everything you need to know about the operation",
+    resourcesIntro:
+      "Review the official documents and practical information to prepare for your subscription with confidence.",
+    resourceTitles: [
+      "Senior subscription form",
+      "Junior subscription form",
+      "Operation brochure",
+      "Information memorandum",
+    ],
+    footerBannerAlt: "BIDC banner",
+    allRightsReserved: "All rights reserved.",
+    footerDescription:
+      "Debt Securitisation Mutual Fund - Bond Issue through a Public Offering.",
+    emailSubject: "Message from the BDEAC website",
+    lastNamePrefix: "Last name",
+    firstNamePrefix: "First name",
+    emailPrefix: "Email",
+    intro:
+      "At the heart of development financing in West Africa for several decades, BIDC relies on its regional expertise and its action in favor of structuring projects to carry the FCTC BIDC campaign with legitimacy, credibility and ambition.", // 👈 Texte modifié
+    operationPages: operationPagesEnglish,
+  },
+} as const;
+
+function Brand({ onHome, label }: { onHome: () => void; label: string }) {
   return (
     <a
       className="brand"
       href="#accueil"
-      aria-label="BIDC, accueil"
+      aria-label={`BIDC, ${label.toLowerCase()}`}
       onClick={onHome}
     >
       <img className="brand-logo" src="/logo-bidc.png" alt="Logo BIDC" />
@@ -181,21 +400,48 @@ function HomeIcon() {
 }
 
 export default function Home() {
+  const [language, setLanguage] = useState<Language>("fr");
   const [activeSlide, setActiveSlide] = useState(0);
   const [activePage, setActivePage] = useState<number | null>(null);
   const [showSubscriptionPage, setShowSubscriptionPage] = useState(false);
   const [contactReady, setContactReady] = useState(false);
+  const t = translations[language];
+  const navigationItems =
+    language === "fr" ? navigation : translations.en.navigation;
+  const pages = language === "fr" ? operationPages : translations.en.operationPages;
+  const intro = t.intro; // Utilise la traduction
+
+  const currentSlide = slides[activeSlide];
+  const currentImage =
+    language === "en" && currentSlide.imageEn
+      ? currentSlide.imageEn
+      : currentSlide.image;
+
+  const midBannerImage = language === "en" ? "/banner-mid-ang.png" : "/banner-mid.png";
+
+  useEffect(() => {
+    const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    const saved = savedLanguage === "en" ? "en" : "fr";
+    setLanguage(saved);
+    document.documentElement.lang = saved;
+  }, []);
+
+  function handleLanguageChange(nextLanguage: Language) {
+    setLanguage(nextLanguage);
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    document.documentElement.lang = nextLanguage;
+  }
 
   function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const subject = `Message du site BDEAC — ${formData.get("contact-name")} ${formData.get("contact-first-name")}`;
+    const subject = `${t.emailSubject} — ${formData.get("contact-name")} ${formData.get("contact-first-name")}`;
     const body = [
-      `Nom : ${formData.get("contact-name")}`,
-      `Prénom : ${formData.get("contact-first-name")}`,
-      `E-mail : ${formData.get("contact-email")}`,
+      `${t.lastNamePrefix} : ${formData.get("contact-name")}`,
+      `${t.firstNamePrefix} : ${formData.get("contact-first-name")}`,
+      `${t.emailPrefix} : ${formData.get("contact-email")}`,
       "",
-      "Message :",
+      `${t.message} :`,
       formData.get("contact-message"),
     ].join("\n");
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -217,36 +463,50 @@ export default function Home() {
   return (
     <main className="site-shell" id="accueil">
       <header className="topbar">
-        <Brand onHome={handleHomeClick} />
+        <Brand onHome={handleHomeClick} label={t.home} />
 
         <div className="operation-title">
-          <span className="operation-label">
-            Fonds Commun de Titrisation de Créances
-          </span>
-          <span className="operation-subtitle">
-            EMPRUNT OBLIGATAIRE PAR APPEL PUBLIC À L'ÉPARGNE
-          </span>
+          <span className="operation-label">{t.operationLabel}</span>
+          <span className="operation-subtitle">{t.operationSubtitle}</span>
         </div>
 
-        <nav className="top-links" aria-label="Navigation principale">
+        <nav className="top-links" aria-label={t.topNavigation}>
+          <div className="language-switch" role="group" aria-label={t.languageLabel}>
+            <button
+              aria-label={translations.fr.switchToEnglish}
+              aria-pressed={language === "fr"}
+              onClick={() => handleLanguageChange("fr")}
+              type="button"
+            >
+              FR
+            </button>
+            <button
+              aria-label={translations.en.switchToFrench}
+              aria-pressed={language === "en"}
+              onClick={() => handleLanguageChange("en")}
+              type="button"
+            >
+              EN
+            </button>
+          </div>
           <button
             className="login-button"
             onClick={handleSubscribeClick}
             type="button"
           >
-            Je souscris
+            {t.subscribe}
           </button>
         </nav>
       </header>
 
-      <div className="marquee-bar" role="marquee" aria-label="Annonces">
+      <div className="marquee-bar" role="marquee" aria-label={t.announcements}>
         <div className="marquee-track">
-          {marqueeItems.map((item, index) => (
+          {t.marqueeItems.map((item, index) => (
             <span className="marquee-item" key={`a-${index}`}>
               {item}
             </span>
           ))}
-          {marqueeItems.map((item, index) => (
+          {t.marqueeItems.map((item, index) => (
             <span
               aria-hidden="true"
               className="marquee-item"
@@ -263,12 +523,8 @@ export default function Home() {
         <article className="section-page" key="subscription-page">
           <div className="subscription-page">
             <div className="subscription-header">
-              <h1 className="subscription-title">Je souscris</h1>
-              <p className="subscription-intro">
-                Choisissez le type de bulletin de souscription qui vous
-                correspond. Chaque document contient les informations
-                nécessaires pour finaliser votre souscription.
-              </p>
+              <h1 className="subscription-title">{t.subscriptionTitle}</h1>
+              <p className="subscription-intro">{t.subscriptionIntro}</p>
             </div>
 
             <div className="subscription-grid">
@@ -287,13 +543,12 @@ export default function Home() {
                     <polyline points="10 9 9 9 8 9" />
                   </svg>
                 </div>
-                <h2 className="subscription-card-title">Bulletin Senior</h2>
+                <h2 className="subscription-card-title">{t.seniorBulletin}</h2>
                 <p className="subscription-card-desc">
-                  Pour les souscripteurs institutionnels et les investisseurs
-                  avertis.
+                  {t.seniorDescription}
                 </p>
                 <span className="subscription-card-cta">
-                  Télécharger le PDF ↓
+                  {t.downloadPdf}
                 </span>
               </a>
 
@@ -312,13 +567,12 @@ export default function Home() {
                     <polyline points="10 9 9 9 8 9" />
                   </svg>
                 </div>
-                <h2 className="subscription-card-title">Bulletin Junior</h2>
+                <h2 className="subscription-card-title">{t.juniorBulletin}</h2>
                 <p className="subscription-card-desc">
-                  Pour les souscripteurs particuliers et les nouveaux
-                  investisseurs.
+                  {t.juniorDescription}
                 </p>
                 <span className="subscription-card-cta">
-                  Télécharger le PDF ↓
+                  {t.downloadPdf}
                 </span>
               </a>
             </div>
@@ -329,7 +583,7 @@ export default function Home() {
               type="button"
               style={{ marginTop: "40px" }}
             >
-              ← Retour à l'accueil
+              {t.backHome}
             </button>
           </div>
         </article>
@@ -338,19 +592,13 @@ export default function Home() {
         <div className="home-full-layout">
           <div className="carousel full-width-carousel">
             <img
-              src={slides[activeSlide].image}
-              alt={slides[activeSlide].alt}
+              src={currentImage}
+              alt={t.slideAlts[activeSlide]}
             />
           </div>
 
           <div className="intro-copy full-width-text">
-            <p>
-              Une institution régionale de développement au service des 15 États
-              de la CEDEAO, une expérience de plusieurs décennies et un rôle
-              actif dans le financement de projets structurants : la BIDC
-              constitue la caution institutionnelle visible de la campagne FCTC
-              BIDC.
-            </p>
+            <p>{intro}</p>
           </div>
 
           <div className="home-split-layout">
@@ -358,7 +606,7 @@ export default function Home() {
               <aside className="sidebar">
                 <nav
                   className="side-navigation"
-                  aria-label="Navigation du site"
+                  aria-label={t.siteNavigation}
                 >
                   <button
                     aria-current={activePage === null && !showSubscriptionPage ? "page" : undefined}
@@ -367,10 +615,10 @@ export default function Home() {
                     type="button"
                   >
                     <HomeIcon />
-                    <span>Accueil</span>
+                    <span>{t.home}</span>
                   </button>
 
-                  {navigation.map((item, index) => (
+                  {navigationItems.map((item, index) => (
                     <button
                       aria-current={activePage === index ? "page" : undefined}
                       className={`side-link${activePage === index ? " active" : ""}`}
@@ -391,54 +639,53 @@ export default function Home() {
                     onClick={handleSubscribeClick}
                     type="button"
                   >
-                    Je souscris
+                    {t.subscribe}
                   </button>
                 </nav>
 
                 <section className="contact-card" id="contact">
-                  <h2>Nous contacter</h2>
+                  <h2>{t.contact}</h2>
                   <form className="contact-form" onSubmit={handleContactSubmit}>
                     <label>
-                      <span>Nom</span>
-                      <input aria-label="Nom" name="contact-name" required />
+                      <span>{t.lastName}</span>
+                      <input aria-label={t.lastName} name="contact-name" required />
                     </label>
                     <label>
-                      <span>Prénom</span>
+                      <span>{t.firstName}</span>
                       <input
-                        aria-label="Prénom"
+                        aria-label={t.firstName}
                         name="contact-first-name"
                         required
                       />
                     </label>
                     <label>
-                      <span>E-mail</span>
+                      <span>{t.email}</span>
                       <input
-                        aria-label="E-mail"
+                        aria-label={t.email}
                         name="contact-email"
                         required
                         type="email"
                       />
                     </label>
                     <label>
-                      <span>Message</span>
+                      <span>{t.message}</span>
                       <textarea
-                        aria-label="Votre message"
+                        aria-label={t.yourMessage}
                         name="contact-message"
                         required
                         rows={4}
                       />
                     </label>
-                    <button type="submit">Envoyer</button>
+                    <button type="submit">{t.send}</button>
                     {contactReady && (
                       <p className="contact-feedback" role="status">
-                        Votre application de messagerie va s'ouvrir avec votre
-                        message prérempli.
+                        {t.contactFeedback}
                       </p>
                     )}
                   </form>
 
                   <p className="contact-email">
-                    Ou écrivez-nous directement :<br />
+                    {t.directEmail}<br />
                     <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                   </p>
                 </section>
@@ -448,28 +695,22 @@ export default function Home() {
             <div className="home-right-column">
               <div className="mid-banner-wrapper">
                 <img
-                  src="/banner-mid.png"
-                  alt="Bannière intermédiaire"
+                  src={midBannerImage}
+                  alt={t.midBannerAlt}
                   className="mid-banner-image"
                 />
               </div>
 
               <section
                 className="resources full-width-resources"
-                aria-label="Documents et ressources"
+                aria-label={t.resourcesLabel}
               >
                 <div className="resources-header">
                   <span className="resources-eyebrow">
-                    Documents & Ressources
+                    {t.resourcesEyebrow}
                   </span>
-                  <h2 className="resources-title">
-                    Tout ce qu'il faut savoir sur l'opération
-                  </h2>
-                  <p className="resources-intro">
-                    Consultez les documents officiels et les informations
-                    pratiques pour préparer votre souscription en toute
-                    confiance.
-                  </p>
+                  <h2 className="resources-title">{t.resourcesTitle}</h2>
+                  <p className="resources-intro">{t.resourcesIntro}</p>
                 </div>
 
                 <div className="resources-grid">
@@ -477,20 +718,22 @@ export default function Home() {
                     <a
                       className="resource-card"
                       href={item.pdf ? item.pdf : "#"}
-                      key={item.title}
+                      key={item.pdf}
                       target={item.pdf ? "_blank" : "_self"}
                       rel={item.pdf ? "noopener noreferrer" : undefined}
                       style={{ animationDelay: `${index * 60}ms` }}
                     >
                       <div className="resource-image-wrapper">
                         <img
-                          alt={item.alt}
+                          alt={t.resourceTitles[index]}
                           className="resource-image"
                           src={item.image}
                         />
                       </div>
                       <div className="resource-content">
-                        <h3 className="resource-card-title">{item.title}</h3>
+                        <h3 className="resource-card-title">
+                          {t.resourceTitles[index]}
+                        </h3>
                         <div className="resource-arrow-wrapper">
                           <span aria-hidden="true" className="resource-arrow">
                             ↓
@@ -508,7 +751,7 @@ export default function Home() {
         /* ===== VUES DES PAGES INTERNES DU MENU ===== */
         <div className="page-columns">
           <aside className="sidebar">
-            <nav className="side-navigation" aria-label="Navigation du site">
+            <nav className="side-navigation" aria-label={t.siteNavigation}>
               <button
                 aria-current={activePage === null && !showSubscriptionPage ? "page" : undefined}
                 className={`home-link${activePage === null && !showSubscriptionPage ? " active" : ""}`}
@@ -516,10 +759,10 @@ export default function Home() {
                 type="button"
               >
                 <HomeIcon />
-                <span>Accueil</span>
+                <span>{t.home}</span>
               </button>
 
-              {navigation.map((item, index) => (
+              {navigationItems.map((item, index) => (
                 <button
                   aria-current={activePage === index ? "page" : undefined}
                   className={`side-link${activePage === index ? " active" : ""}`}
@@ -540,53 +783,52 @@ export default function Home() {
                 onClick={handleSubscribeClick}
                 type="button"
               >
-                Je souscris
+                {t.subscribe}
               </button>
             </nav>
 
             <section className="contact-card" id="contact">
-              <h2>Nous contacter</h2>
+              <h2>{t.contact}</h2>
               <form className="contact-form" onSubmit={handleContactSubmit}>
                 <label>
-                  <span>Nom</span>
-                  <input aria-label="Nom" name="contact-name" required />
+                  <span>{t.lastName}</span>
+                  <input aria-label={t.lastName} name="contact-name" required />
                 </label>
                 <label>
-                  <span>Prénom</span>
+                  <span>{t.firstName}</span>
                   <input
-                    aria-label="Prénom"
+                    aria-label={t.firstName}
                     name="contact-first-name"
                     required
                   />
                 </label>
                 <label>
-                  <span>E-mail</span>
+                  <span>{t.email}</span>
                   <input
-                    aria-label="E-mail"
+                    aria-label={t.email}
                     name="contact-email"
                     required
                     type="email"
                   />
                 </label>
                 <label>
-                  <span>Message</span>
+                  <span>{t.message}</span>
                   <textarea
-                    aria-label="Votre message"
+                    aria-label={t.yourMessage}
                     name="contact-message"
                     required
                     rows={4}
                   />
                 </label>
-                <button type="submit">Envoyer</button>
+                <button type="submit">{t.send}</button>
                 {contactReady && (
                   <p className="contact-feedback" role="status">
-                    Votre application de messagerie va s'ouvrir avec votre
-                    message prérempli.
+                    {t.contactFeedback}
                   </p>
                 )}
               </form>
               <p className="contact-email">
-                Ou écrivez-nous directement :<br />
+                {t.directEmail}<br />
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </p>
             </section>
@@ -596,15 +838,15 @@ export default function Home() {
             <article className="section-page" key={activePage}>
               <figure className="section-hero">
                 <img
-                  alt={operationPages[activePage].imageAlt}
-                  src={operationPages[activePage].image}
+                  alt={pages[activePage].imageAlt}
+                  src={pages[activePage].image}
                 />
-                <figcaption>{operationPages[activePage].title}</figcaption>
+                <figcaption>{pages[activePage].title}</figcaption>
               </figure>
               <div className="carousel-dots section-dots">
-                {operationPages.map((page, index) => (
+                {pages.map((page, index) => (
                   <button
-                    aria-label={`Afficher : ${page.title}`}
+                    aria-label={`${language === "fr" ? "Afficher" : "Show"}: ${page.title}`}
                     aria-pressed={activePage === index}
                     className={activePage === index ? "active" : ""}
                     key={page.title}
@@ -614,14 +856,14 @@ export default function Home() {
                 ))}
               </div>
               <p className="section-eyebrow">
-                {operationPages[activePage].eyebrow}
+                {pages[activePage].eyebrow}
               </p>
-              <h1 id="section-title">{operationPages[activePage].title}</h1>
+              <h1 id="section-title">{pages[activePage].title}</h1>
               <p className="section-intro">
-                {operationPages[activePage].intro}
+                {pages[activePage].intro}
               </p>
               <div className="section-cards">
-                {operationPages[activePage].blocks.map((block, index) => (
+                {pages[activePage].blocks.map((block, index) => (
                   <section className="section-card" key={block.title}>
                     <span className="section-card-number">
                       {String(index + 1).padStart(2, "0")}
@@ -638,7 +880,7 @@ export default function Home() {
                 onClick={() => setActivePage(null)}
                 type="button"
               >
-                ← Retour à l'accueil
+                {t.backHome}
               </button>
             </article>
           </section>
@@ -649,17 +891,14 @@ export default function Home() {
         <div className="footer-banner-wrapper">
           <img
             src="/footer-banner.png"
-            alt="Bannière BIDC"
+            alt={t.footerBannerAlt}
             className="footer-banner-image"
           />
         </div>
         <div className="footer-bottom">
           <div className="footer-copyright">
-            <p>© {new Date().getFullYear()} APE BIDC. Tous droits réservés.</p>
-            <p>
-              Fonds Commun de Titrisation de Créances - Emprunt Obligataire par
-              Appel Public à l'Épargne.
-            </p>
+            <p>© {new Date().getFullYear()} APE BIDC. {t.allRightsReserved}</p>
+            <p>{t.footerDescription}</p>
           </div>
         </div>
       </footer>

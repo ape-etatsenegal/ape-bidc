@@ -188,6 +188,38 @@ a {
   display: flex;
 }
 
+.language-switch {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  font-family: DM Sans, Arial, sans-serif;
+  display: inline-flex;
+}
+
+.language-switch button {
+  color: var(--ink-soft);
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  padding: 5px 7px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.language-switch button[aria-pressed="true"] {
+  background: var(--green);
+  color: #fff;
+}
+
+.language-switch button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
 .login-button {
   border-radius: var(--radius-sm);
   background: var(--red);
@@ -360,17 +392,20 @@ a {
 .mid-banner-wrapper {
   border-radius: var(--radius-lg);
   width: 100%;
-  box-shadow: var(--shadow-md);
   height: 300px;
+  box-shadow: var(--shadow-md);
+  background-color: var(--green-tint);
+  justify-content: center;
+  align-items: center;
   display: flex;
   overflow: hidden;
 }
 
 .mid-banner-image {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
-  height: 100%;
-  margin-top: -11px;
+  height: 105%;
+  margin-top: 0;
   display: block;
 }
 
