@@ -19,7 +19,7 @@ const slides = [
     imageEn: "/images.png",
     alt: "Lignes électriques au coucher du soleil",
     title: "L'énergie au cœur du développement",
-  },      
+  },
   {
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85",
@@ -45,18 +45,13 @@ const navigation = [
   "Médiathèque",
 ];
 
+// 👇 Junior retiré
 const resources = [
   {
     title: "Bulletin de souscription Senior",
     image: "/bulletin-souscription.png",
     alt: "Bulletin de souscription Senior",
     pdf: "/pdf/bulletin-souscription-senior.pdf",
-  },
-  {
-    title: "Bulletin de souscription Junior",
-    image: "/bulletin-souscription.png",
-    alt: "Bulletin de souscription Junior",
-    pdf: "/pdf/bulletin-souscription-junior.pdf",
   },
   {
     title: "Dépliant de l'opération",
@@ -101,8 +96,7 @@ const operationPages = [
   },
   {
     title: navigation[1],
-    image:
-      "caracteristiques.png", // 👈 Image modifiée (documents financiers)
+    image: "caracteristiques.png",
     imageAlt: "Documents financiers et caractéristiques",
     eyebrow: "Informations clés",
     intro:
@@ -120,8 +114,7 @@ const operationPages = [
   },
   {
     title: navigation[2],
-    image:
-      "documentation.png", // 👈 Image modifiée (documentation officielle)
+    image: "documentation.png",
     imageAlt: "Documentation officielle",
     eyebrow: "Document de référence",
     intro:
@@ -144,10 +137,10 @@ const operationPages = [
     imageAlt: "Ressources institutionnelles",
     eyebrow: "Ressources",
     intro:
-      "Retrouvez les ressources institutionnelles et les documents de référence liés à la BIDC.", // 👈 Texte modifié
+      "Retrouvez les ressources institutionnelles et les documents de référence liés à la BIDC.",
     blocks: [
       {
-        title: "Brochure institutionnelle", // 👈 Nouveau bloc
+        title: "Brochure institutionnelle",
         text: "Découvrez la BIDC à travers sa brochure institutionnelle présentant sa mission, son organisation et ses réalisations.",
       },
       {
@@ -173,7 +166,7 @@ const operationPagesEnglish = [
     blocks: [
       {
         title: "Framework",
-        text: "The operation is part of BIDC's mission, a Development Finance Institution serving the 15 West African States dedicated to financing structuring projects that promote economic growth, regional integration and sustainable development in the sub-region.", // 👈 Texte corrigé
+        text: "The operation is part of BIDC's mission, a Development Finance Institution serving the 15 West African States dedicated to financing structuring projects that promote economic growth, regional integration and sustainable development in the sub-region.",
       },
       {
         title: "Purpose",
@@ -222,7 +215,7 @@ const operationPagesEnglish = [
     image: operationPages[3].image,
     imageAlt: "Institutional resources",
     eyebrow: "Resources",
-    intro: "Discover the institutional resources and reference documents related to BIDC.", // 👈 Texte modifié
+    intro: "Discover the institutional resources and reference documents related to BIDC.",
     blocks: [
       {
         title: "Institutional Brochure",
@@ -252,14 +245,12 @@ const translations = {
     slideAlts: slides.map((slide) => slide.alt),
     marqueeItems,
     subscriptionTitle: "Je souscris",
+    // 👇 TEXTE CORRIGÉ : plus de choix, un seul bulletin Senior
     subscriptionIntro:
-      "Choisissez le type de bulletin de souscription qui vous correspond. Chaque document contient les informations nécessaires pour finaliser votre souscription.",
+      "Téléchargez le bulletin de souscription Senior pour finaliser votre souscription. Ce document contient toutes les informations nécessaires pour vous accompagner dans votre démarche.",
     seniorBulletin: "Bulletin Senior",
     seniorDescription:
       "Pour les souscripteurs institutionnels et les investisseurs avertis.",
-    juniorBulletin: "Bulletin Junior",
-    juniorDescription:
-      "Pour les souscripteurs particuliers et les nouveaux investisseurs.",
     downloadPdf: "Télécharger le PDF ↓",
     backHome: "← Retour à l'accueil",
     siteNavigation: "Navigation du site",
@@ -290,7 +281,7 @@ const translations = {
     firstNamePrefix: "Prénom",
     emailPrefix: "E-mail",
     intro:
-      "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.", // 👈 Texte modifié
+      "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.",
   },
   en: {
     languageLabel: "Language",
@@ -320,13 +311,12 @@ const translations = {
       "Media library",
     ],
     subscriptionTitle: "Subscribe",
+    // 👇 TEXTE CORRIGÉ : plus de choix, un seul bulletin Senior
     subscriptionIntro:
-      "Choose the subscription form that suits you. Each document contains the information you need to complete your subscription.",
+      "Download the Senior subscription form to complete your subscription. This document contains all the information you need to guide you through the process.",
     seniorBulletin: "Senior subscription form",
     seniorDescription:
       "For institutional subscribers and sophisticated investors.",
-    juniorBulletin: "Junior subscription form",
-    juniorDescription: "For individual subscribers and new investors.",
     downloadPdf: "Download PDF ↓",
     backHome: "← Back to home",
     siteNavigation: "Website navigation",
@@ -349,7 +339,6 @@ const translations = {
       "Review the official documents and practical information to prepare for your subscription with confidence.",
     resourceTitles: [
       "Senior subscription form",
-      "Junior subscription form",
       "Operation brochure",
       "Information memorandum",
     ],
@@ -362,7 +351,7 @@ const translations = {
     firstNamePrefix: "First name",
     emailPrefix: "Email",
     intro:
-      "At the heart of development financing in West Africa for several decades, BIDC relies on its regional expertise and its action in favor of structuring projects to carry the FCTC BIDC campaign with legitimacy, credibility and ambition.", // 👈 Texte modifié
+      "At the heart of development financing in West Africa for several decades, BIDC relies on its regional expertise and its action in favor of structuring projects to carry the FCTC BIDC campaign with legitimacy, credibility and ambition.",
     operationPages: operationPagesEnglish,
   },
 } as const;
@@ -409,7 +398,7 @@ export default function Home() {
   const navigationItems =
     language === "fr" ? navigation : translations.en.navigation;
   const pages = language === "fr" ? operationPages : translations.en.operationPages;
-  const intro = t.intro; // Utilise la traduction
+  const intro = t.intro;
 
   const currentSlide = slides[activeSlide];
   const currentImage =
@@ -417,7 +406,8 @@ export default function Home() {
       ? currentSlide.imageEn
       : currentSlide.image;
 
-  const midBannerImage = language === "en" ? "/banner-mid-ang.png" : "/banner-mid.png";
+  const midBannerImage =
+    language === "en" ? "/banner-mid-ang.png" : "/banner-mid.png";
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -527,6 +517,7 @@ export default function Home() {
               <p className="subscription-intro">{t.subscriptionIntro}</p>
             </div>
 
+            {/* 👇 Plus qu'une seule carte Senior */}
             <div className="subscription-grid">
               <a
                 href="/pdf/bulletin-souscription-senior.pdf"
@@ -535,7 +526,14 @@ export default function Home() {
                 className="subscription-card"
               >
                 <div className="subscription-card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                     <polyline points="14 2 14 8 20 8" />
                     <line x1="16" y1="13" x2="8" y2="13" />
@@ -544,36 +542,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <h2 className="subscription-card-title">{t.seniorBulletin}</h2>
-                <p className="subscription-card-desc">
-                  {t.seniorDescription}
-                </p>
-                <span className="subscription-card-cta">
-                  {t.downloadPdf}
-                </span>
-              </a>
-
-              <a
-                href="/pdf/bulletin-souscription-junior.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="subscription-card"
-              >
-                <div className="subscription-card-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                    <polyline points="10 9 9 9 8 9" />
-                  </svg>
-                </div>
-                <h2 className="subscription-card-title">{t.juniorBulletin}</h2>
-                <p className="subscription-card-desc">
-                  {t.juniorDescription}
-                </p>
-                <span className="subscription-card-cta">
-                  {t.downloadPdf}
-                </span>
+                <p className="subscription-card-desc">{t.seniorDescription}</p>
+                <span className="subscription-card-cta">{t.downloadPdf}</span>
               </a>
             </div>
 
@@ -903,5 +873,5 @@ export default function Home() {
         </div>
       </footer>
     </main>
-  );
+  ); 
 }
