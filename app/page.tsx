@@ -82,7 +82,7 @@ const operationPages = [
     imageAlt: "Infrastructure industrielle et énergétique",
     eyebrow: "Présentation de l'opération",
     intro:
-      "Cette rubrique présente le contexte de l'opération et son objectif : permettre au public de mieux comprendre son cadre et sa contribution au financement du développement en Afrique centrale.",
+      "Cette rubrique présente le contexte de l'opération et son objectif : permettre au public de mieux comprendre son cadre et sa contribution au financement du développement en Afrique de l'Ouest.",
     blocks: [
       {
         title: "Le cadre",
@@ -112,7 +112,7 @@ const operationPages = [
       },
     ],
   },
-  {
+  {  
     title: navigation[2],
     image: "documentation.png",
     imageAlt: "Documentation officielle",
@@ -120,8 +120,7 @@ const operationPages = [
     intro:
       "La note d'information est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
     blocks: [
-      {
-        title: "Consulter la note d'information",
+      {                       
         text: "Les informations détaillées de l'opération sont destinées à être regroupées dans cette rubrique. Référez-vous aux documents officiels avant toute souscription.",
       },
       {
@@ -162,7 +161,7 @@ const operationPagesEnglish = [
     imageAlt: "Industrial and energy infrastructure",
     eyebrow: "About the operation",
     intro:
-      "This section explains the context and purpose of the operation, helping the public understand its framework and contribution to financing development in Central Africa.",
+      "This section explains the context and purpose of the operation, helping the public understand its framework and contribution to financing development in Ouest Africa.",
     blocks: [
       {
         title: "Framework",
@@ -233,7 +232,7 @@ const operationPagesEnglish = [
   },
 ];
 
-const translations = {
+const translations = {  
   fr: {
     languageLabel: "Langue",
     switchToEnglish: "Passer le site en anglais",
@@ -283,7 +282,7 @@ const translations = {
     intro:
       "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.",
   },
-  en: {
+  en: { 
     languageLabel: "Language",
     switchToEnglish: "Switch the website to English",
     switchToFrench: "Switch the website to French",
