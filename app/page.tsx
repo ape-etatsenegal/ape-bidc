@@ -45,7 +45,6 @@ const navigation = [
   "Médiathèque",
 ];
 
-// 👇 Junior retiré
 const resources = [
   {
     title: "Bulletin de souscription Senior",
@@ -112,7 +111,7 @@ const operationPages = [
       },
     ],
   },
-  {  
+  {
     title: navigation[2],
     image: "documentation.png",
     imageAlt: "Documentation officielle",
@@ -120,7 +119,7 @@ const operationPages = [
     intro:
       "La note d'information est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
     blocks: [
-      {                       
+      {
         text: "Les informations détaillées de l'opération sont destinées à être regroupées dans cette rubrique. Référez-vous aux documents officiels avant toute souscription.",
       },
       {
@@ -232,10 +231,11 @@ const operationPagesEnglish = [
   },
 ];
 
-const translations = {  
+const translations = {
   fr: {
     languageLabel: "Langue",
     switchToEnglish: "Passer le site en anglais",
+    switchToFrench: "Passer le site en français",
     operationLabel: "Fonds Commun de Titrisation de Créances",
     operationSubtitle: "EMPRUNT OBLIGATAIRE PAR APPEL PUBLIC À L'ÉPARGNE",
     topNavigation: "Navigation principale",
@@ -244,7 +244,6 @@ const translations = {
     slideAlts: slides.map((slide) => slide.alt),
     marqueeItems,
     subscriptionTitle: "Je souscris",
-    // 👇 TEXTE CORRIGÉ : plus de choix, un seul bulletin Senior
     subscriptionIntro:
       "Téléchargez le bulletin de souscription Senior pour finaliser votre souscription. Ce document contient toutes les informations nécessaires pour vous accompagner dans votre démarche.",
     seniorBulletin: "Bulletin Senior",
@@ -275,14 +274,15 @@ const translations = {
     allRightsReserved: "Tous droits réservés.",
     footerDescription:
       "Fonds Commun de Titrisation de Créances - Emprunt Obligataire par Appel Public à l'Épargne.",
-    emailSubject: "Message du site BDEAC",
+    // ✅ CORRIGÉ : BDEAC → FCTC BIDC EBID
+    emailSubject: "Message du site FCTC BIDC EBID",
     lastNamePrefix: "Nom",
     firstNamePrefix: "Prénom",
     emailPrefix: "E-mail",
     intro:
       "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.",
   },
-  en: { 
+  en: {
     languageLabel: "Language",
     switchToEnglish: "Switch the website to English",
     switchToFrench: "Switch the website to French",
@@ -310,7 +310,6 @@ const translations = {
       "Media library",
     ],
     subscriptionTitle: "Subscribe",
-    // 👇 TEXTE CORRIGÉ : plus de choix, un seul bulletin Senior
     subscriptionIntro:
       "Download the Senior subscription form to complete your subscription. This document contains all the information you need to guide you through the process.",
     seniorBulletin: "Senior subscription form",
@@ -345,7 +344,8 @@ const translations = {
     allRightsReserved: "All rights reserved.",
     footerDescription:
       "Debt Securitisation Mutual Fund - Bond Issue through a Public Offering.",
-    emailSubject: "Message from the BDEAC website",
+    // ✅ CORRIGÉ : BDEAC → FCTC BIDC EBID
+    emailSubject: "Message from the FCTC BIDC EBID website",
     lastNamePrefix: "Last name",
     firstNamePrefix: "First name",
     emailPrefix: "Email",
@@ -461,8 +461,9 @@ export default function Home() {
 
         <nav className="top-links" aria-label={t.topNavigation}>
           <div className="language-switch" role="group" aria-label={t.languageLabel}>
+            {/* ✅ CORRIGÉ : aria-label correspond désormais à l'action réelle du bouton */}
             <button
-              aria-label={translations.fr.switchToEnglish}
+              aria-label={t.switchToFrench}
               aria-pressed={language === "fr"}
               onClick={() => handleLanguageChange("fr")}
               type="button"
@@ -470,7 +471,7 @@ export default function Home() {
               FR
             </button>
             <button
-              aria-label={translations.en.switchToFrench}
+              aria-label={t.switchToEnglish}
               aria-pressed={language === "en"}
               onClick={() => handleLanguageChange("en")}
               type="button"
@@ -488,7 +489,8 @@ export default function Home() {
         </nav>
       </header>
 
-      <div className="marquee-bar" role="marquee" aria-label={t.announcements}>
+      {/* ✅ CORRIGÉ : role="marquee" (invalide) → role="region" (valide) */}
+      <div className="marquee-bar" role="region" aria-label={t.announcements}>
         <div className="marquee-track">
           {t.marqueeItems.map((item, index) => (
             <span className="marquee-item" key={`a-${index}`}>
@@ -516,7 +518,6 @@ export default function Home() {
               <p className="subscription-intro">{t.subscriptionIntro}</p>
             </div>
 
-            {/* 👇 Plus qu'une seule carte Senior */}
             <div className="subscription-grid">
               <a
                 href="/pdf/bulletin-souscription-senior.pdf"
@@ -872,5 +873,5 @@ export default function Home() {
         </div>
       </footer>
     </main>
-  ); 
+  );
 }
