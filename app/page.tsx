@@ -45,7 +45,7 @@ const navigation = [
   "Médiathèque",
 ];
 
-// 👇 AJOUT : propriété `disabled` sur chaque ressource
+// ✅ Ressource "Dépliant" désactivée
 const resources = [
   {
     title: "Bulletin de souscription Senior",
@@ -59,7 +59,7 @@ const resources = [
     image: "/depliant.png",
     alt: "Dépliant de l'opération",
     pdf: "/pdf/depliant.pdf",
-    disabled: true, // 👈 DÉSACTIVÉ
+    disabled: true,
   },
   {
     title: "Note d'information",
@@ -70,8 +70,9 @@ const resources = [
   },
 ];
 
+// ✅ Période de souscription : 05 octobre → 04 décembre
 const marqueeItems = [
-  "📢 Période de souscription ouverte — Du 28 octobre au 30 novembre 2026",
+  "📢 Période de souscription ouverte — Du 05 octobre au 04 décembre 2026",
   "💰 Prix d'émission : 10 000 FCFA par part",
   "📍 Souscrivez auprès de votre SGI partenaire",
   "📞 Plus d'infos : fctc-bidc-ebid@contact.sn",
@@ -274,7 +275,7 @@ const translations = {
     resourcesIntro:
       "Consultez les documents officiels et les informations pratiques pour préparer votre souscription en toute confiance.",
     resourceTitles: resources.map((resource) => resource.title),
-    resourceDisabledLabel: "Bientôt disponible", // 👈 AJOUT
+    resourceDisabledLabel: "Bientôt disponible",
     footerBannerAlt: "Bannière BIDC",
     allRightsReserved: "Tous droits réservés.",
     footerDescription:
@@ -301,8 +302,9 @@ const translations = {
       "Modern architecture in the heart of the city",
       "Bright workspace",
     ],
+    // ✅ Période de souscription EN
     marqueeItems: [
-      "📢 Subscription period open — 28 October to 30 November 2026",
+      "📢 Subscription period open — 5 October to 4 December 2026",
       "💰 Issue price: CFAF 10,000 per unit",
       "📍 Subscribe through your partner brokerage firm",
       "📞 More information: fctc-bidc-ebid@contact.sn",
@@ -344,7 +346,7 @@ const translations = {
       "Operation brochure",
       "Information memorandum",
     ],
-    resourceDisabledLabel: "Coming soon", // 👈 AJOUT
+    resourceDisabledLabel: "Coming soon",
     footerBannerAlt: "BIDC banner",
     allRightsReserved: "All rights reserved.",
     footerDescription:
@@ -685,7 +687,7 @@ export default function Home() {
                   <p className="resources-intro">{t.resourcesIntro}</p>
                 </div>
 
-                {/* 👇 GRILLE DES RESSOURCES AVEC GESTION DU DÉSACTIVÉ */}
+                {/* Grille des ressources avec gestion du bouton désactivé */}
                 <div className="resources-grid">
                   {resources.map((item, index) => {
                     const content = (
@@ -716,7 +718,6 @@ export default function Home() {
                       </>
                     );
 
-                    // Ressource désactivée → div non cliquable
                     if (item.disabled) {
                       return (
                         <div
@@ -730,7 +731,6 @@ export default function Home() {
                       );
                     }
 
-                    // Ressource active → lien normal
                     return (
                       <a
                         className="resource-card"

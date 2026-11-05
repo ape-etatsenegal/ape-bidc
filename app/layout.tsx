@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "FCTC BIDC EBID",
     title: "FCTC BIDC EBID | Emprunt obligataire BIDC",
     description:
-      "Souscrivez à l'emprunt obligataire par appel public à l'épargne de la BIDC. Période : du 28 octobre au 30 novembre 2026. Prix : 10 000 FCFA par part.",
+      "Souscrivez à l'emprunt obligataire par appel public à l'épargne de la BIDC. Période : du 05 novembre au 04 décembre 2026. Prix : 10 000 FCFA par part.",
     images: [
       {
         url: "/Emprunt FCTC BIDC 2026 5.png",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FCTC BIDC EBID | Emprunt obligataire BIDC",
     description:
-      "Souscrivez à l'emprunt obligataire de la BIDC. Période : 28 oct. - 30 nov. 2026.",
+      "Souscrivez à l'emprunt obligataire de la BIDC. Période : 05 Nov. - 04 Déc. 2026.",
     images: ["/Emprunt FCTC BIDC 2026 5.png"],
   },
 
