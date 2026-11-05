@@ -45,24 +45,28 @@ const navigation = [
   "Médiathèque",
 ];
 
+// 👇 AJOUT : propriété `disabled` sur chaque ressource
 const resources = [
   {
     title: "Bulletin de souscription Senior",
     image: "/bulletin-souscription.png",
     alt: "Bulletin de souscription Senior",
     pdf: "/pdf/bulletin-souscription-senior.pdf",
+    disabled: false,
   },
   {
     title: "Dépliant de l'opération",
     image: "/depliant.png",
     alt: "Dépliant de l'opération",
     pdf: "/pdf/depliant.pdf",
+    disabled: true, // 👈 DÉSACTIVÉ
   },
   {
     title: "Note d'information",
     image: "/note-information.png",
     alt: "Note d'information",
     pdf: "/pdf/note-information.pdf",
+    disabled: false,
   },
 ];
 
@@ -270,11 +274,11 @@ const translations = {
     resourcesIntro:
       "Consultez les documents officiels et les informations pratiques pour préparer votre souscription en toute confiance.",
     resourceTitles: resources.map((resource) => resource.title),
+    resourceDisabledLabel: "Bientôt disponible", // 👈 AJOUT
     footerBannerAlt: "Bannière BIDC",
     allRightsReserved: "Tous droits réservés.",
     footerDescription:
       "Fonds Commun de Titrisation de Créances - Emprunt Obligataire par Appel Public à l'Épargne.",
-    // ✅ CORRIGÉ : BDEAC → FCTC BIDC EBID
     emailSubject: "Message du site FCTC BIDC EBID",
     lastNamePrefix: "Nom",
     firstNamePrefix: "Prénom",
@@ -340,11 +344,11 @@ const translations = {
       "Operation brochure",
       "Information memorandum",
     ],
+    resourceDisabledLabel: "Coming soon", // 👈 AJOUT
     footerBannerAlt: "BIDC banner",
     allRightsReserved: "All rights reserved.",
     footerDescription:
       "Debt Securitisation Mutual Fund - Bond Issue through a Public Offering.",
-    // ✅ CORRIGÉ : BDEAC → FCTC BIDC EBID
     emailSubject: "Message from the FCTC BIDC EBID website",
     lastNamePrefix: "Last name",
     firstNamePrefix: "First name",
@@ -461,7 +465,6 @@ export default function Home() {
 
         <nav className="top-links" aria-label={t.topNavigation}>
           <div className="language-switch" role="group" aria-label={t.languageLabel}>
-            {/* ✅ CORRIGÉ : aria-label correspond désormais à l'action réelle du bouton */}
             <button
               aria-label={t.switchToFrench}
               aria-pressed={language === "fr"}
@@ -489,7 +492,6 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* ✅ CORRIGÉ : role="marquee" (invalide) → role="region" (valide) */}
       <div className="marquee-bar" role="region" aria-label={t.announcements}>
         <div className="marquee-track">
           {t.marqueeItems.map((item, index) => (
@@ -683,35 +685,65 @@ export default function Home() {
                   <p className="resources-intro">{t.resourcesIntro}</p>
                 </div>
 
+                {/* 👇 GRILLE DES RESSOURCES AVEC GESTION DU DÉSACTIVÉ */}
                 <div className="resources-grid">
-                  {resources.map((item, index) => (
-                    <a
-                      className="resource-card"
-                      href={item.pdf ? item.pdf : "#"}
-                      key={item.pdf}
-                      target={item.pdf ? "_blank" : "_self"}
-                      rel={item.pdf ? "noopener noreferrer" : undefined}
-                      style={{ animationDelay: `${index * 60}ms` }}
-                    >
-                      <div className="resource-image-wrapper">
-                        <img
-                          alt={t.resourceTitles[index]}
-                          className="resource-image"
-                          src={item.image}
-                        />
-                      </div>
-                      <div className="resource-content">
-                        <h3 className="resource-card-title">
-                          {t.resourceTitles[index]}
-                        </h3>
-                        <div className="resource-arrow-wrapper">
-                          <span aria-hidden="true" className="resource-arrow">
-                            ↓
-                          </span>
+                  {resources.map((item, index) => {
+                    const content = (
+                      <>
+                        <div className="resource-image-wrapper">
+                          <img
+                            alt={t.resourceTitles[index]}
+                            className="resource-image"
+                            src={item.image}
+                          />
                         </div>
-                      </div>
-                    </a>
-                  ))}
+                        <div className="resource-content">
+                          <h3 className="resource-card-title">
+                            {t.resourceTitles[index]}
+                          </h3>
+                          {item.disabled ? (
+                            <span className="resource-disabled-badge">
+                              {t.resourceDisabledLabel}
+                            </span>
+                          ) : (
+                            <div className="resource-arrow-wrapper">
+                              <span aria-hidden="true" className="resource-arrow">
+                                ↓
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    );
+
+                    // Ressource désactivée → div non cliquable
+                    if (item.disabled) {
+                      return (
+                        <div
+                          aria-disabled="true"
+                          className="resource-card resource-card-disabled"
+                          key={item.pdf}
+                          title={t.resourceDisabledLabel}
+                        >
+                          {content}
+                        </div>
+                      );
+                    }
+
+                    // Ressource active → lien normal
+                    return (
+                      <a
+                        className="resource-card"
+                        href={item.pdf}
+                        key={item.pdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ animationDelay: `${index * 60}ms` }}
+                      >
+                        {content}
+                      </a>
+                    );
+                  })}
                 </div>
               </section>
             </div>
