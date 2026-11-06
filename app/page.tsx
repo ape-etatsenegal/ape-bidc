@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
+// ✅ Nouvelle adresse e-mail
+const CONTACT_EMAIL = "fctc-bidc@invictuscapfin.com";
 const LANGUAGE_STORAGE_KEY = "ape-bidc-language";
 
 type Language = "fr" | "en";
@@ -44,6 +46,7 @@ const navigation = [
   "Médiathèque",
 ];
 
+// ✅ `disabled: true` sur la ressource « Dépliant de l'opération »
 const resources = [
   {
     title: "Bulletin de souscription Senior",
@@ -68,30 +71,15 @@ const resources = [
   },
 ];
 
-// ✅ Période de souscription du 05 novembre au 04 décembre 2026
+// ✅ Utilise CONTACT_EMAIL (plus d'adresse codée en dur)
 const marqueeItems = [
-  "📢 Période de souscription ouverte — Du 05 novembre au 04 décembre 2026",
+  "📢 Période de souscription ouverte — Du 28 octobre au 30 novembre 2026",
   "💰 Prix d'émission : 10 000 FCFA par part",
   "📍 Souscrivez auprès de votre SGI partenaire",
-  "📞 Plus d'infos : fctc-bidc-ebid@contact.sn",
+  `📞 Plus d'infos : ${CONTACT_EMAIL}`,
 ];
 
-// ✅ Type explicite pour accepter un bloc sans titre
-type OperationBlock = {
-  title?: string;
-  text: string;
-};
-
-type OperationPage = {
-  title: string;
-  image: string;
-  imageAlt: string;
-  eyebrow: string;
-  intro: string;
-  blocks: OperationBlock[];
-};
-
-const operationPages: OperationPage[] = [
+const operationPages = [
   {
     title: navigation[0],
     image:
@@ -138,8 +126,6 @@ const operationPages: OperationPage[] = [
       "La note d'information est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
     blocks: [
       {
-        // ✅ Ajout d'un titre pour cohérence visuelle
-        title: "Documents de référence",
         text: "Les informations détaillées de l'opération sont destinées à être regroupées dans cette rubrique. Référez-vous aux documents officiels avant toute souscription.",
       },
       {
@@ -173,7 +159,7 @@ const operationPages: OperationPage[] = [
   },
 ];
 
-const operationPagesEnglish: OperationPage[] = [
+const operationPagesEnglish = [
   {
     title: "Framework and purpose of the operation",
     image: operationPages[0].image,
@@ -219,7 +205,7 @@ const operationPagesEnglish: OperationPage[] = [
       "The information memorandum is the reference document outlining the terms, procedures and information relating to the operation.",
     blocks: [
       {
-        title: "Reference documents",
+        title: "Read the information memorandum",
         text: "Detailed information about the operation is provided in this section. Please consult the official documents before subscribing.",
       },
       {
@@ -273,6 +259,16 @@ const translations = {
     backHome: "← Retour à l'accueil",
     siteNavigation: "Navigation du site",
     home: "Accueil",
+    contact: "Nous contacter",
+    lastName: "Nom",
+    firstName: "Prénom",
+    email: "E-mail",
+    message: "Message",
+    yourMessage: "Votre message",
+    send: "Envoyer",
+    contactFeedback:
+      "Votre application de messagerie va s'ouvrir avec votre message prérempli.",
+    directEmail: "Ou écrivez-nous directement :",
     midBannerAlt: "Bannière intermédiaire",
     resourcesLabel: "Documents et ressources",
     resourcesEyebrow: "Documents & Ressources",
@@ -285,6 +281,10 @@ const translations = {
     allRightsReserved: "Tous droits réservés.",
     footerDescription:
       "Fonds Commun de Titrisation de Créances - Emprunt Obligataire par Appel Public à l'Épargne.",
+    emailSubject: "Message du site FCTC BIDC EBID",
+    lastNamePrefix: "Nom",
+    firstNamePrefix: "Prénom",
+    emailPrefix: "E-mail",
     intro:
       "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.",
   },
@@ -303,11 +303,12 @@ const translations = {
       "Modern architecture in the heart of the city",
       "Bright workspace",
     ],
+    // ✅ Utilise CONTACT_EMAIL (plus d'adresse codée en dur)
     marqueeItems: [
-      "📢 Subscription period open — 5 November to 4 December 2026",
+      "📢 Subscription period open — 28 October to 30 November 2026",
       "💰 Issue price: CFAF 10,000 per unit",
       "📍 Subscribe through your partner brokerage firm",
-      "📞 More information: fctc-bidc-ebid@contact.sn",
+      `📞 More information: ${CONTACT_EMAIL}`,
     ],
     navigation: [
       "Framework and purpose of the operation",
@@ -325,6 +326,16 @@ const translations = {
     backHome: "← Back to home",
     siteNavigation: "Website navigation",
     home: "Home",
+    contact: "Contact us",
+    lastName: "Last name",
+    firstName: "First name",
+    email: "Email",
+    message: "Message",
+    yourMessage: "Your message",
+    send: "Send",
+    contactFeedback:
+      "Your email application will open with your message pre-filled.",
+    directEmail: "Or email us directly:",
     midBannerAlt: "Promotional banner",
     resourcesLabel: "Documents and resources",
     resourcesEyebrow: "Documents & Resources",
@@ -341,6 +352,10 @@ const translations = {
     allRightsReserved: "All rights reserved.",
     footerDescription:
       "Debt Securitisation Mutual Fund - Bond Issue through a Public Offering.",
+    emailSubject: "Message from the FCTC BIDC EBID website",
+    lastNamePrefix: "Last name",
+    firstNamePrefix: "First name",
+    emailPrefix: "Email",
     intro:
       "At the heart of development financing in West Africa for several decades, BIDC relies on its regional expertise and its action in favor of structuring projects to carry the FCTC BIDC campaign with legitimacy, credibility and ambition.",
     operationPages: operationPagesEnglish,
@@ -384,9 +399,7 @@ export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [activePage, setActivePage] = useState<number | null>(null);
   const [showSubscriptionPage, setShowSubscriptionPage] = useState(false);
-  // ✅ Année rendue côté client uniquement (évite le hydration mismatch)
-  const [currentYear, setCurrentYear] = useState<number | null>(null);
-
+  const [contactReady, setContactReady] = useState(false);
   const t = translations[language];
   const navigationItems =
     language === "fr" ? navigation : translations.en.navigation;
@@ -407,13 +420,28 @@ export default function Home() {
     const saved = savedLanguage === "en" ? "en" : "fr";
     setLanguage(saved);
     document.documentElement.lang = saved;
-    setCurrentYear(new Date().getFullYear());
   }, []);
 
   function handleLanguageChange(nextLanguage: Language) {
     setLanguage(nextLanguage);
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
     document.documentElement.lang = nextLanguage;
+  }
+
+  function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const subject = `${t.emailSubject} — ${formData.get("contact-name")} ${formData.get("contact-first-name")}`;
+    const body = [
+      `${t.lastNamePrefix} : ${formData.get("contact-name")}`,
+      `${t.firstNamePrefix} : ${formData.get("contact-first-name")}`,
+      `${t.emailPrefix} : ${formData.get("contact-email")}`,
+      "",
+      `${t.message} :`,
+      formData.get("contact-message"),
+    ].join("\n");
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setContactReady(true);
   }
 
   function handleSubscribeClick() {
@@ -589,6 +617,53 @@ export default function Home() {
                     {t.subscribe}
                   </button>
                 </nav>
+
+                <section className="contact-card" id="contact">
+                  <h2>{t.contact}</h2>
+                  <form className="contact-form" onSubmit={handleContactSubmit}>
+                    <label>
+                      <span>{t.lastName}</span>
+                      <input aria-label={t.lastName} name="contact-name" required />
+                    </label>
+                    <label>
+                      <span>{t.firstName}</span>
+                      <input
+                        aria-label={t.firstName}
+                        name="contact-first-name"
+                        required
+                      />
+                    </label>
+                    <label>
+                      <span>{t.email}</span>
+                      <input
+                        aria-label={t.email}
+                        name="contact-email"
+                        required
+                        type="email"
+                      />
+                    </label>
+                    <label>
+                      <span>{t.message}</span>
+                      <textarea
+                        aria-label={t.yourMessage}
+                        name="contact-message"
+                        required
+                        rows={4}
+                      />
+                    </label>
+                    <button type="submit">{t.send}</button>
+                    {contactReady && (
+                      <p className="contact-feedback" role="status">
+                        {t.contactFeedback}
+                      </p>
+                    )}
+                  </form>
+
+                  <p className="contact-email">
+                    {t.directEmail}<br />
+                    <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+                  </p>
+                </section>
               </aside>
             </div>
 
@@ -643,6 +718,7 @@ export default function Home() {
                       </>
                     );
 
+                    // Ressource désactivée → div non cliquable
                     if (item.disabled) {
                       return (
                         <div
@@ -656,6 +732,7 @@ export default function Home() {
                       );
                     }
 
+                    // Ressource active → lien normal
                     return (
                       <a
                         className="resource-card"
@@ -713,6 +790,52 @@ export default function Home() {
                 {t.subscribe}
               </button>
             </nav>
+
+            <section className="contact-card" id="contact">
+              <h2>{t.contact}</h2>
+              <form className="contact-form" onSubmit={handleContactSubmit}>
+                <label>
+                  <span>{t.lastName}</span>
+                  <input aria-label={t.lastName} name="contact-name" required />
+                </label>
+                <label>
+                  <span>{t.firstName}</span>
+                  <input
+                    aria-label={t.firstName}
+                    name="contact-first-name"
+                    required
+                  />
+                </label>
+                <label>
+                  <span>{t.email}</span>
+                  <input
+                    aria-label={t.email}
+                    name="contact-email"
+                    required
+                    type="email"
+                  />
+                </label>
+                <label>
+                  <span>{t.message}</span>
+                  <textarea
+                    aria-label={t.yourMessage}
+                    name="contact-message"
+                    required
+                    rows={4}
+                  />
+                </label>
+                <button type="submit">{t.send}</button>
+                {contactReady && (
+                  <p className="contact-feedback" role="status">
+                    {t.contactFeedback}
+                  </p>
+                )}
+              </form>
+              <p className="contact-email">
+                {t.directEmail}<br />
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+              </p>
+            </section>
           </aside>
 
           <section className="main-content">
@@ -730,7 +853,7 @@ export default function Home() {
                     aria-label={`${language === "fr" ? "Afficher" : "Show"}: ${page.title}`}
                     aria-pressed={activePage === index}
                     className={activePage === index ? "active" : ""}
-                    key={`dot-${index}`}
+                    key={page.title}
                     onClick={() => setActivePage(index)}
                     type="button"
                   />
@@ -744,17 +867,13 @@ export default function Home() {
                 {pages[activePage].intro}
               </p>
               <div className="section-cards">
-                {/* ✅ Clé unique basée sur activePage + index + affichage conditionnel du titre */}
                 {pages[activePage].blocks.map((block, index) => (
-                  <section
-                    className="section-card"
-                    key={`block-${activePage}-${index}`}
-                  >
+                  <section className="section-card" key={block.title}>
                     <span className="section-card-number">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      {block.title && <h2>{block.title}</h2>}
+                      <h2>{block.title}</h2>
                       <p>{block.text}</p>
                     </div>
                   </section>
@@ -782,8 +901,7 @@ export default function Home() {
         </div>
         <div className="footer-bottom">
           <div className="footer-copyright">
-            {/* ✅ currentYear est null côté serveur → pas de mismatch SSR */}
-            <p>© {currentYear ?? 2026} APE BIDC. {t.allRightsReserved}</p>
+            <p>© {new Date().getFullYear()} APE BIDC. {t.allRightsReserved}</p>
             <p>{t.footerDescription}</p>
           </div>
         </div>
