@@ -802,7 +802,6 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 20px 40px rgb(16 42 27 / 12%);
 }
 
-/* ✅ Carte désactivée */
 .resource-card-disabled {
   opacity: 0.55;
   cursor: not-allowed;
@@ -1270,6 +1269,32 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
 }
 
+/* ===== ✅ LECTEUR VIDÉO (Médiathèque) ===== */
+.section-video-wrapper {
+  margin: 0 0 32px;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+
+.section-video-wrapper video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+@media (max-width: 620px) {
+  .section-video-wrapper {
+    margin-bottom: 24px;
+    border-radius: var(--radius-md);
+  }
+}
+
 /* ✅ Encart CTA — Renvoi vers la note */
 .section-note-cta {
   display: flex;
@@ -1403,7 +1428,7 @@ a { color: inherit; text-decoration: none; }
   .carousel img, .section-hero img { transition: none; }
 }
 
-/* ===== FOOTER (✅ image entièrement visible) ===== */
+/* ===== FOOTER ===== */
 .footer {
   display: flex;
   flex-direction: column;

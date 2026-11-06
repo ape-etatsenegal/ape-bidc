@@ -9,7 +9,7 @@ const NOTE_INFO_PDF = "/pdf/note-information.pdf";
 
 type Language = "fr" | "en";
 
-// ✅ Types — `text` optionnel pour autoriser les blocs "liste seule"
+// ✅ Types — `text` optionnel + support vidéo
 type OperationBlock = {
   title?: string;
   text?: string;
@@ -27,6 +27,8 @@ type OperationPage = {
   intro: string;
   blocks: OperationBlock[];
   noteLink?: boolean;
+  video?: string; // ✅ URL du fichier vidéo (.mp4)
+  videoPoster?: string; // ✅ image de prévisualisation (optionnel)
 };
 
 const slides = [
@@ -270,7 +272,9 @@ const operationPages: OperationPage[] = [
     ],
   },
 
-  // PAGE 4 : MÉDIATHÈQUE (version simplifiée)
+  // ============================================================
+  // PAGE 4 : MÉDIATHÈQUE — avec vidéo
+  // ============================================================
   {
     title: navigation[3],
     image:
@@ -278,11 +282,17 @@ const operationPages: OperationPage[] = [
     imageAlt: "Ressources institutionnelles",
     eyebrow: "Ressources",
     intro:
-      "Les ressources de la médiathèque seront mises à disposition prochainement.",
+      "Découvrez la présentation vidéo de l'opération FCTC BIDC et consultez les ressources institutionnelles mises à votre disposition.",
+    video: "/video/presentation-fctc-bidc.mp4",
+    videoPoster: "/video/presentation-poster.png",
     blocks: [
       {
-        title: "Bientôt disponible",
-        text: "Cette rubrique sera prochainement enrichie de nouvelles ressources institutionnelles.",
+        title: "Présentation de l'opération",
+        text: "Cette vidéo présente les objectifs, les caractéristiques et les mécanismes de l'opération de titrisation de créances FCTC BIDC.",
+      },
+      {
+        title: "Autres ressources",
+        text: "D'autres ressources institutionnelles seront prochainement disponibles dans cette rubrique.",
       },
     ],
   },
@@ -457,11 +467,18 @@ const operationPagesEnglish: OperationPage[] = [
     image: operationPages[3].image,
     imageAlt: "Institutional resources",
     eyebrow: "Resources",
-    intro: "Media library resources will be made available soon.",
+    intro:
+      "Discover the video presentation of the FCTC BIDC operation and consult the institutional resources available to you.",
+    video: "/video/presentation-fctc-bidc.mp4",
+    videoPoster: "/video/presentation-poster.png",
     blocks: [
       {
-        title: "Coming soon",
-        text: "This section will soon be enriched with new institutional resources.",
+        title: "Operation presentation",
+        text: "This video presents the objectives, features and mechanisms of the FCTC BIDC securitization operation.",
+      },
+      {
+        title: "Other resources",
+        text: "Additional institutional resources will be made available soon in this section.",
       },
     ],
   },
@@ -1137,6 +1154,27 @@ export default function Home() {
               <p className="section-eyebrow">{pages[activePage].eyebrow}</p>
               <h1 id="section-title">{pages[activePage].title}</h1>
               <p className="section-intro">{pages[activePage].intro}</p>
+
+              {/* ✅ LECTEUR VIDÉO (Médiathèque) */}
+              {pages[activePage].video && (
+                <div className="section-video-wrapper">
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={pages[activePage].videoPoster}
+                  >
+                    <source
+                      src={pages[activePage].video}
+                      type="video/mp4"
+                    />
+                    {language === "fr"
+                      ? "Votre navigateur ne supporte pas la lecture vidéo."
+                      : "Your browser does not support video playback."}
+                  </video>
+                </div>
+              )}
+
               <div className="section-cards">
                 {pages[activePage].blocks.map((block, index) => (
                   <section className="section-card" key={index}>
