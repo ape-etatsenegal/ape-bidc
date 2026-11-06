@@ -2,11 +2,32 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
-// ✅ Nouvelle adresse e-mail
+// ✅ Adresse e-mail officielle
 const CONTACT_EMAIL = "fctc-bidc@invictuscapfin.com";
 const LANGUAGE_STORAGE_KEY = "ape-bidc-language";
+const NOTE_INFO_PDF = "/pdf/note-information.pdf";
 
 type Language = "fr" | "en";
+
+// ✅ Types — `text` optionnel pour autoriser les blocs "liste seule"
+type OperationBlock = {
+  title?: string;
+  text?: string;
+  list?: string[];
+  link?: string;
+  linkLabel?: string;
+  disabled?: boolean;
+};
+
+type OperationPage = {
+  title: string;
+  image: string;
+  imageAlt: string;
+  eyebrow: string;
+  intro: string;
+  blocks: OperationBlock[];
+  noteLink?: boolean;
+};
 
 const slides = [
   {
@@ -46,7 +67,6 @@ const navigation = [
   "Médiathèque",
 ];
 
-// ✅ `disabled: true` sur la ressource « Dépliant de l'opération »
 const resources = [
   {
     title: "Bulletin de souscription Senior",
@@ -60,7 +80,7 @@ const resources = [
     image: "/depliant.png",
     alt: "Dépliant de l'opération",
     pdf: "/pdf/depliant.pdf",
-    disabled: true, // 👈 DÉSACTIVÉ
+    disabled: true,
   },
   {
     title: "Note d'information",
@@ -71,15 +91,19 @@ const resources = [
   },
 ];
 
-// ✅ Période mise à jour : 5 novembre → 4 décembre
 const marqueeItems = [
+  "🎥 Webinaire d'information — Jeudi 12 novembre 2026",
   "📢 Période de souscription ouverte — Du 5 novembre au 4 décembre 2026",
   "💰 Prix d'émission : 10 000 FCFA par part",
   "📍 Souscrivez auprès de votre SGI partenaire",
   `📞 Plus d'infos : ${CONTACT_EMAIL}`,
 ];
 
-const operationPages = [
+// ============================================================
+// PAGES FRANÇAISES
+// ============================================================
+const operationPages: OperationPage[] = [
+  // PAGE 1 : CADRE ET OBJET
   {
     title: navigation[0],
     image:
@@ -87,46 +111,157 @@ const operationPages = [
     imageAlt: "Infrastructure industrielle et énergétique",
     eyebrow: "Présentation de l'opération",
     intro:
-      "Cette rubrique présente le contexte de l'opération et son objectif : permettre au public de mieux comprendre son cadre et sa contribution au financement du développement en Afrique de l'Ouest.",
+      "Cette rubrique présente le cadre et l'objet de l'opération : la BIDC, ses axes d'intervention, le cadre juridique applicable, et les raisons qui motivent cette opération de titrisation de créances à travers un emprunt obligataire par Appel Public à l'Épargne sur le Marché Financier Régional.",
+    noteLink: true,
     blocks: [
       {
-        title: "Le cadre",
-        text: "L'opération s'inscrit dans la mission de la BIDC, Institution de Financement du Développement au service des 15 États de l'Afrique de l'Ouest dédiée au financement de projets structurants favorisant la croissance économique, l'intégration régionale et le développement durable de la sous-région.",
+        title: "La BIDC, institution financière de développement de la CEDEAO",
+        text: "La Banque d'Investissement et de Développement de la CEDEAO (BIDC) est l'institution financière de développement de la Communauté Économique des États de l'Afrique de l'Ouest (CEDEAO). Créée pour soutenir l'intégration économique régionale et le développement durable des États membres, elle constitue aujourd'hui un des outils stratégiques de développement de la sous-région pour le financement des projets publics et privés à fort impact socio-économique.",
       },
       {
-        title: "L'objet",
-        text: "Retrouvez ici les informations essentielles pour comprendre la finalité de l'opération et les principes qui l'encadrent.",
+        title: "Les axes d'intervention de la BIDC",
+        text: "À travers ses interventions, la BIDC accompagne les États membres, les institutions financières et les entreprises dans le financement de projets structurants destinés à promouvoir la croissance économique, l'intégration régionale et le développement durable. Son action s'articule principalement autour des axes suivants :",
+        list: [
+          "Financement des infrastructures stratégiques dans les secteurs des transports, de l'énergie et de l'aménagement urbain",
+          "Soutien au secteur bancaire et aux PME/PMI à travers des lignes de crédit destinées au financement de l'économie régionale",
+          "Diversification sectorielle et géographique de son portefeuille afin de favoriser une meilleure maîtrise des risques",
+          "Promotion du développement durable à travers le financement de projets à fort impact économique et social",
+          "Renforcement de l'intégration économique régionale et de la résilience des économies des États membres de la CEDEAO",
+        ],
+      },
+      {
+        title: "Le cadre juridique et réglementaire",
+        text: "L'opération est régie par le Règlement n° 02/2010/CM/UEMOA relatif aux Fonds Communs de Titrisation de Créances et aux Opérations de Titrisation dans l'UEMOA, ainsi que par ses textes d'application, notamment :",
+        list: [
+          "L'Instruction n° 43/2010 relative à l'agrément des FCTC, au visa de leurs Notes d'Information, ainsi qu'aux modalités de placement de leurs titres sur le Marché Financier Régional de l'UMOA",
+          "L'Instruction n° 44/2010 relative à l'agrément des sociétés de gestion de FCTC sur le Marché Financier Régional de l'UMOA",
+          "Le droit sénégalais en vigueur, les Actes Uniformes de l'OHADA et la réglementation UEMOA applicable",
+        ],
+      },
+      {
+        title: "Le refinancement du portefeuille de créances",
+        text: "Dans le cadre du développement de ses activités, la BIDC souhaite refinancer une partie de son portefeuille de créances afin d'optimiser la gestion de son bilan, de renforcer sa capacité de financement et de mobiliser de nouvelles ressources sur le Marché Financier Régional. À cet effet, la Banque envisage une opération de titrisation de créances à travers un emprunt obligataire par Appel Public à l'Épargne portant sur un montant de soixante-trois milliards (63 000 000 000) de francs CFA sur le Marché Financier Régional.",
+      },
+      {
+        title: "Les atouts de la titrisation de créances",
+        text: "La titrisation de créances est un mécanisme capable de répondre aux aspirations de la BIDC, en ce sens qu'elle lui permet :",
+        list: [
+          "d'améliorer la structure de son bilan et d'optimiser l'utilisation de ses fonds propres afin de renforcer ses ratios prudentiels",
+          "de mobiliser des ressources financières d'un montant de soixante-trois milliards (63 000 000 000) de francs CFA sur le Marché Financier Régional de l'UMOA",
+          "de refinancer de façon optimale son portefeuille de créances, tout en diversifiant sa base d'investisseurs institutionnels et privés",
+          "de renforcer sa capacité de financement afin d'accroître ses interventions en faveur des projets structurants et du développement économique de l'espace CEDEAO",
+        ],
       },
     ],
   },
+
+  // PAGE 2 : CARACTÉRISTIQUES
   {
     title: navigation[1],
     image: "caracteristiques.png",
     imageAlt: "Documents financiers et caractéristiques",
     eyebrow: "Informations clés",
     intro:
-      "Les caractéristiques de l'opération rassemblent les éléments utiles pour en comprendre le fonctionnement et les modalités.",
+      "Retrouvez ci-dessous les caractéristiques essentielles de l'opération : structure de l'émission, modalités, actif sous-jacent, mécanismes de protection, intervenants et fiscalité.",
+    noteLink: true,
     blocks: [
       {
-        title: "Modalités de l'opération",
-        text: "Les modalités applicables, les conditions de participation et les informations pratiques sont à consulter dans les documents officiels de l'opération.",
+        title: "Structure de l'émission",
+        text: "L'opération porte sur un montant global de soixante-trois milliards (63 000 000 000) de francs CFA d'obligations, structuré en deux tranches réparties en trois catégories, auxquelles s'ajoutent 2 parts résiduelles de 1 000 000 FCFA chacune :",
+        list: [
+          "Tranche Senior Catégorie A — « FCTC BIDC SENIOR A 6,20% 2026-2031 » : 12 500 000 000 FCFA, soit 1 250 000 obligations de 10 000 FCFA",
+          "Tranche Senior Catégorie B — « FCTC BIDC SENIOR B 6,65% 2026-2033 » : 49 000 000 000 FCFA, soit 4 900 000 obligations de 10 000 FCFA",
+          "Tranche Junior — « FCTC BIDC JUNIOR 7,00% 2026-2033 » : 1 500 000 000 FCFA, soit 150 000 obligations de 10 000 FCFA (souscription exclusive BIDC)",
+          "Parts résiduelles : 2 parts de 1 000 000 FCFA chacune (souscription exclusive BIDC)",
+        ],
       },
       {
-        title: "À retenir",
-        text: "Avant toute décision, prenez connaissance de l'ensemble des caractéristiques et des conditions décrites dans la note d'information.",
+        title: "Modalités de l'émission",
+        text: "Les principales modalités de l'émission sont les suivantes :",
+        list: [
+          "Prix d'émission : 100 % de la valeur nominale",
+          "Périodicité des coupons : Semestrielle",
+          "Maturité : 60 mois pour la Tranche Senior A / 84 mois pour la Tranche Senior B et la Tranche Junior",
+          "Amortissement du principal : Semestriel (Senior A et B) / In fine (Junior et Parts)",
+          "Période de souscription : Du 5 novembre au 4 décembre 2026",
+          "Date de jouissance : 5 jours ouvrés après la clôture de la période de souscription",
+          "Cotation : Demande d'admission à la BRVM",
+          "Règlement / livraison : Via le DC/BR, au plus tard 14 jours ouvrés après la clôture",
+        ],
+      },
+      {
+        title: "Actif sous-jacent",
+        text: "Le portefeuille cédé est constitué de 10 créances de prêts détenues par la BIDC sur des débiteurs établis principalement au Sénégal, en Côte d'Ivoire et au Mali. Ces créances résultent de financements consentis au secteur financier, aux infrastructures publiques et parapubliques, ainsi qu'à des sociétés privées intervenant dans le transport, l'énergie et les produits pétroliers.",
+        list: [
+          "Valeur en principal : 68 342 571 064 FCFA",
+          "Intérêts rattachés : 10 431 009 149 FCFA",
+          "Flux attendus totaux (capital + intérêts) : 78 773 580 213 FCFA",
+          "Répartition géographique : Sénégal 68 % / Côte d'Ivoire 19 % / Mali 13 %",
+          "Taux moyen pondéré : 6,85 %",
+          "Diversification sectorielle : secteur financier 42,7 %, transport et infrastructures 40,0 %, aménagement urbain 9,9 %, énergie/produits pétroliers 7,3 %",
+        ],
+      },
+      {
+        title: "Mécanismes de protection",
+        text: "Le Compartiment bénéficie de plusieurs mécanismes de rehaussement de crédit destinés à protéger les Porteurs d'Obligations Senior :",
+        list: [
+          "Surdimensionnement : créances supplémentaires à hauteur de 0,88 % du montant total des obligations émises, principal et intérêts compris",
+          "Portefeuille de Réserve : 4 000 000 000 FCFA, maintenu à 6,35 % du Capital Restant Dû des obligations",
+          "Ligne de liquidité : 2 500 000 000 FCFA destinée à pallier tout décalage technique",
+          "Subordination des Obligations Junior et des Parts aux Obligations Senior",
+          "Compte Spécialement Affecté : compte de recouvrement dédié exclusivement à l'encaissement des Créances Cédées au profit du Compartiment",
+        ],
+      },
+      {
+        title: "Intervenants de l'opération",
+        text: "Les principaux intervenants de l'opération sont :",
+        list: [
+          "Cédant et Gestionnaire des Créances : Banque d'Investissement et de Développement de la CEDEAO (BIDC)",
+          "Société de Gestion du FCTC : KF Titrisation",
+          "Dépositaire et Banque de Liquidité : Bank of Africa Côte d'Ivoire (BOA CI)",
+          "Arrangeur et Chef de file du Syndicat de Placement : Invictus Capital & Finance",
+          "Co-arrangeur : KASIC Group SARL",
+          "Commissaire aux Comptes : Deloitte Sénégal (Titulaire) / Cabinet Djité et associés (Suppléant)",
+          "Conseil juridique : ASAFO & Co",
+          "Expert évaluateur des actifs : Deloitte Togo",
+          "Agence de notation : GCR Ratings",
+        ],
+      },
+      {
+        title: "Fiscalité applicable",
+        text: "Le régime fiscal applicable est celui en vigueur en République du Sénégal. Conformément à la réglementation applicable, les intérêts des obligations sont soumis à une retenue à la source au titre de l'impôt sur les revenus des valeurs mobilières (IRVM) au taux de 6 % pour les obligations d'une durée d'au moins cinq (5) ans. Les investisseurs sont invités à consulter leurs propres conseils pour appréhender leur situation fiscale particulière.",
       },
     ],
   },
+
+  // PAGE 3 : DOCUMENTATION
   {
     title: navigation[2],
     image: "documentation.png",
     imageAlt: "Documentation officielle",
-    eyebrow: "Document de référence",
+    eyebrow: "Documentation officielle",
     intro:
-      "La note d'information est le document de référence pour prendre connaissance des conditions, des modalités et des informations relatives à l'opération.",
+      "Retrouvez ci-dessous l'ensemble des supports officiels de l'opération. Téléchargez les documents pour préparer votre souscription en toute confiance.",
+    noteLink: true,
     blocks: [
       {
-        text: "Les informations détaillées de l'opération sont destinées à être regroupées dans cette rubrique. Référez-vous aux documents officiels avant toute souscription.",
+        title: "Bulletin de souscription Senior",
+        text: "Bulletin à compléter et à remettre à votre SGI partenaire pour formaliser votre souscription.",
+        link: "/pdf/bulletin-souscription-senior.pdf",
+        linkLabel: "Télécharger le PDF ↓",
+      },
+      {
+        title: "Dépliant de l'opération",
+        text: "Présentation synthétique de l'opération et de ses caractéristiques clés.",
+        link: "/pdf/depliant.pdf",
+        linkLabel: "Télécharger le PDF ↓",
+        disabled: true,
+      },
+      {
+        title: "Note d'information",
+        text: "Document de référence détaillant l'ensemble des conditions, modalités et informations relatives à l'opération.",
+        link: "/pdf/note-information.pdf",
+        linkLabel: "Télécharger le PDF ↓",
       },
       {
         title: "Information importante",
@@ -134,6 +269,8 @@ const operationPages = [
       },
     ],
   },
+
+  // PAGE 4 : MÉDIATHÈQUE (version simplifiée)
   {
     title: navigation[3],
     image:
@@ -141,40 +278,66 @@ const operationPages = [
     imageAlt: "Ressources institutionnelles",
     eyebrow: "Ressources",
     intro:
-      "Retrouvez les ressources institutionnelles et les documents de référence liés à la BIDC.",
+      "Les ressources de la médiathèque seront mises à disposition prochainement.",
     blocks: [
       {
-        title: "Brochure institutionnelle",
-        text: "Découvrez la BIDC à travers sa brochure institutionnelle présentant sa mission, son organisation et ses réalisations.",
-      },
-      {
-        title: "Stratégie GRO",
-        text: "Consultez la Stratégie GRO de la BIDC pour en savoir plus sur ses orientations stratégiques.",
-      },
-      {
-        title: "Rapport annuel",
-        text: "Accédez au rapport annuel de la BIDC pour suivre ses activités, ses résultats financiers et son impact sur le développement de la sous-région.",
+        title: "Bientôt disponible",
+        text: "Cette rubrique sera prochainement enrichie de nouvelles ressources institutionnelles.",
       },
     ],
   },
 ];
 
-const operationPagesEnglish = [
+// ============================================================
+// PAGES ANGLAISES
+// ============================================================
+const operationPagesEnglish: OperationPage[] = [
   {
     title: "Framework and purpose of the operation",
     image: operationPages[0].image,
     imageAlt: "Industrial and energy infrastructure",
     eyebrow: "About the operation",
     intro:
-      "This section explains the context and purpose of the operation, helping the public understand its framework and contribution to financing development in Ouest Africa.",
+      "This section presents the framework and purpose of the operation: EBID, its areas of intervention, the applicable legal framework, and the reasons behind this securitization operation through a bond issue by public offering on the Regional Financial Market.",
+    noteLink: true,
     blocks: [
       {
-        title: "Framework",
-        text: "The operation is part of BIDC's mission, a Development Finance Institution serving the 15 West African States dedicated to financing structuring projects that promote economic growth, regional integration and sustainable development in the sub-region.",
+        title: "EBID, the development finance institution of ECOWAS",
+        text: "The ECOWAS Bank for Investment and Development (EBID) is the development finance institution of the Economic Community of West African States (ECOWAS). Established to support regional economic integration and the sustainable development of member States, it is today one of the strategic development tools of the sub-region for financing public and private projects with high socio-economic impact.",
       },
       {
-        title: "Purpose",
-        text: "Find the essential information here to understand the operation's purpose and the principles that govern it.",
+        title: "EBID's areas of intervention",
+        text: "Through its interventions, EBID supports member States, financial institutions and companies in financing structuring projects designed to promote economic growth, regional integration and sustainable development. Its action is primarily structured around the following areas:",
+        list: [
+          "Financing of strategic infrastructure in the transport, energy and urban planning sectors",
+          "Support to the banking sector and SMEs/SMIs through credit lines dedicated to financing the regional economy",
+          "Sectoral and geographical diversification of its portfolio to promote better risk management",
+          "Promotion of sustainable development through financing of projects with high economic and social impact",
+          "Strengthening of regional economic integration and resilience of the economies of ECOWAS member States",
+        ],
+      },
+      {
+        title: "Legal and regulatory framework",
+        text: "The operation is governed by Regulation No. 02/2010/CM/UEMOA on Debt Securitisation Mutual Funds and Securitisation Operations in WAEMU, as well as its implementing texts, in particular:",
+        list: [
+          "Instruction No. 43/2010 on the approval of Debt Securitisation Mutual Funds, the visa on their Information Memoranda, and the placement arrangements for their securities on the WAEMU Regional Financial Market",
+          "Instruction No. 44/2010 on the approval of Debt Securitisation Mutual Fund management companies on the WAEMU Regional Financial Market",
+          "Applicable Senegalese law, OHADA Uniform Acts and applicable WAEMU regulations",
+        ],
+      },
+      {
+        title: "Refinancing of the loan portfolio",
+        text: "As part of its business development, EBID wishes to refinance part of its loan portfolio in order to optimize its balance sheet management, strengthen its financing capacity and mobilize new resources on the Regional Financial Market. To this end, the Bank is considering a securitization operation through a bond issue by Public Offering for an amount of sixty-three billion (63,000,000,000) CFA francs on the Regional Financial Market.",
+      },
+      {
+        title: "The advantages of loan securitization",
+        text: "Securitization is a mechanism capable of meeting EBID's expectations, as it allows the Bank to:",
+        list: [
+          "improve its balance sheet structure and optimize the use of its equity in order to strengthen its prudential ratios",
+          "mobilize financial resources of sixty-three billion (63,000,000,000) CFA francs on the WAEMU Regional Financial Market",
+          "optimally refinance its loan portfolio while diversifying its base of institutional and private investors",
+          "strengthen its financing capacity in order to increase its interventions in favor of structuring projects and the economic development of the ECOWAS area",
+        ],
       },
     ],
   },
@@ -184,15 +347,74 @@ const operationPagesEnglish = [
     imageAlt: "Financial documents and key features",
     eyebrow: "Key information",
     intro:
-      "The operation's key features bring together the information needed to understand how it works and its terms.",
+      "Find below the essential features of the operation: issue structure, terms, underlying assets, protection mechanisms, participants and taxation.",
+    noteLink: true,
     blocks: [
       {
-        title: "Terms of the operation",
-        text: "Please refer to the official operation documents for the applicable terms, participation requirements and practical information.",
+        title: "Issue structure",
+        text: "The operation involves a total amount of sixty-three billion (63,000,000,000) CFA francs in bonds, structured into two tranches divided into three categories, plus 2 residual shares of 1,000,000 CFA francs each:",
+        list: [
+          "Senior Tranche Category A — “FCTC BIDC SENIOR A 6.20% 2026-2031”: 12,500,000,000 CFA francs, i.e. 1,250,000 bonds of 10,000 CFA francs",
+          "Senior Tranche Category B — “FCTC BIDC SENIOR B 6.65% 2026-2033”: 49,000,000,000 CFA francs, i.e. 4,900,000 bonds of 10,000 CFA francs",
+          "Junior Tranche — “FCTC BIDC JUNIOR 7.00% 2026-2033”: 1,500,000,000 CFA francs, i.e. 150,000 bonds of 10,000 CFA francs (exclusive subscription by EBID)",
+          "Residual shares: 2 shares of 1,000,000 CFA francs each (exclusive subscription by EBID)",
+        ],
       },
       {
-        title: "Key points",
-        text: "Before making any decision, review all the features and conditions described in the information memorandum.",
+        title: "Issue terms",
+        text: "The main issue terms are as follows:",
+        list: [
+          "Issue price: 100% of nominal value",
+          "Coupon frequency: Semi-annual",
+          "Maturity: 60 months for Senior Tranche A / 84 months for Senior Tranche B and Junior Tranche",
+          "Principal amortization: Semi-annual (Senior A and B) / Bullet (Junior and Shares)",
+          "Subscription period: From 5 November to 4 December 2026",
+          "Value date: 5 business days after the closing of the subscription period",
+          "Listing: Application for admission to the BRVM",
+          "Settlement/delivery: Via the DC/BR, no later than 14 business days after closing",
+        ],
+      },
+      {
+        title: "Underlying assets",
+        text: "The transferred portfolio consists of 10 loan receivables held by EBID on debtors mainly established in Senegal, Côte d'Ivoire and Mali. These receivables arise from financing granted to the financial sector, public and parapublic infrastructure, as well as private companies operating in transport, energy and petroleum products.",
+        list: [
+          "Principal value: 68,342,571,064 CFA francs",
+          "Attached interest: 10,431,009,149 CFA francs",
+          "Total expected flows (principal + interest): 78,773,580,213 CFA francs",
+          "Geographical breakdown: Senegal 68% / Côte d'Ivoire 19% / Mali 13%",
+          "Weighted average rate: 6.85%",
+          "Sector diversification: financial sector 42.7%, transport and infrastructure 40.0%, urban development 9.9%, energy/petroleum products 7.3%",
+        ],
+      },
+      {
+        title: "Protection mechanisms",
+        text: "The Compartment benefits from several credit enhancement mechanisms designed to protect Senior Bondholders:",
+        list: [
+          "Overcollateralization: additional receivables representing 0.88% of the total amount of bonds issued, principal and interest included",
+          "Reserve Portfolio: 4,000,000,000 CFA francs, maintained at 6.35% of the bonds' outstanding principal",
+          "Liquidity facility: 2,500,000,000 CFA francs intended to address any technical delays",
+          "Subordination of Junior Bonds and Shares to Senior Bonds",
+          "Specifically Assigned Account: collection account dedicated exclusively to receiving Transferred Receivables for the benefit of the Compartment",
+        ],
+      },
+      {
+        title: "Transaction participants",
+        text: "The main transaction participants are:",
+        list: [
+          "Seller and Servicer: ECOWAS Bank for Investment and Development (EBID)",
+          "Management Company of the FCTC: KF Titrisation",
+          "Custodian and Liquidity Bank: Bank of Africa Côte d'Ivoire (BOA CI)",
+          "Arranger and Lead Manager: Invictus Capital & Finance",
+          "Co-arranger: KASIC Group SARL",
+          "Statutory Auditors: Deloitte Senegal (Titular) / Cabinet Djité et associés (Substitute)",
+          "Legal Counsel: ASAFO & Co",
+          "Asset Valuation Expert: Deloitte Togo",
+          "Rating Agency: GCR Ratings",
+        ],
+      },
+      {
+        title: "Applicable taxation",
+        text: "The applicable tax regime is the one in force in the Republic of Senegal. In accordance with applicable regulations, interest on the bonds is subject to withholding tax under the personal income tax on securities (IRVM) at a rate of 6% for bonds with a maturity of at least five (5) years. Investors are invited to consult their own advisors to understand their specific tax situation.",
       },
     ],
   },
@@ -200,13 +422,29 @@ const operationPagesEnglish = [
     title: "Documentation",
     image: operationPages[2].image,
     imageAlt: "Official documentation",
-    eyebrow: "Reference document",
+    eyebrow: "Official documentation",
     intro:
-      "The information memorandum is the reference document outlining the terms, procedures and information relating to the operation.",
+      "Find below all the official documents of the operation. Download them to prepare your subscription with confidence.",
+    noteLink: true,
     blocks: [
       {
-        title: "Read the information memorandum",
-        text: "Detailed information about the operation is provided in this section. Please consult the official documents before subscribing.",
+        title: "Senior subscription form",
+        text: "Form to be completed and submitted to your partner brokerage firm to formalize your subscription.",
+        link: "/pdf/bulletin-souscription-senior.pdf",
+        linkLabel: "Download PDF ↓",
+      },
+      {
+        title: "Operation brochure",
+        text: "Summary presentation of the operation and its key features.",
+        link: "/pdf/depliant.pdf",
+        linkLabel: "Download PDF ↓",
+        disabled: true,
+      },
+      {
+        title: "Information memorandum",
+        text: "Reference document detailing all the terms, procedures and information relating to the operation.",
+        link: "/pdf/note-information.pdf",
+        linkLabel: "Download PDF ↓",
       },
       {
         title: "Important information",
@@ -219,24 +457,19 @@ const operationPagesEnglish = [
     image: operationPages[3].image,
     imageAlt: "Institutional resources",
     eyebrow: "Resources",
-    intro: "Discover the institutional resources and reference documents related to BIDC.",
+    intro: "Media library resources will be made available soon.",
     blocks: [
       {
-        title: "Institutional Brochure",
-        text: "Learn about BIDC through its institutional brochure presenting its mission, organization, and achievements.",
-      },
-      {
-        title: "GRO Strategy",
-        text: "Consult BIDC's GRO Strategy to learn more about its strategic orientations.",
-      },
-      {
-        title: "Annual Report",
-        text: "Access BIDC's annual report to track its activities, financial results, and impact on the sub-region's development.",
+        title: "Coming soon",
+        text: "This section will soon be enriched with new institutional resources.",
       },
     ],
   },
 ];
 
+// ============================================================
+// TRADUCTIONS
+// ============================================================
 const translations = {
   fr: {
     languageLabel: "Langue",
@@ -287,6 +520,9 @@ const translations = {
     emailPrefix: "E-mail",
     intro:
       "Au cœur du financement du développement en Afrique de l'Ouest depuis plusieurs décennies, la BIDC s'appuie sur son expertise régionale et son action en faveur de projets structurants pour porter la campagne FCTC BIDC avec légitimité, crédibilité et ambition.",
+    noteInfoText:
+      "Pour plus d'informations sur les conditions, modalités et caractéristiques de l'opération, veuillez consulter la note d'information officielle.",
+    noteInfoCTA: "📄 Consulter la note d'information ↓",
   },
   en: {
     languageLabel: "Language",
@@ -303,8 +539,8 @@ const translations = {
       "Modern architecture in the heart of the city",
       "Bright workspace",
     ],
-    // ✅ Période mise à jour : 5 novembre → 4 décembre
     marqueeItems: [
+      "🎥 Information webinar — Thursday, November 12, 2026",
       "📢 Subscription period open — 5 November to 4 December 2026",
       "💰 Issue price: CFAF 10,000 per unit",
       "📍 Subscribe through your partner brokerage firm",
@@ -359,9 +595,15 @@ const translations = {
     intro:
       "At the heart of development financing in West Africa for several decades, BIDC relies on its regional expertise and its action in favor of structuring projects to carry the FCTC BIDC campaign with legitimacy, credibility and ambition.",
     operationPages: operationPagesEnglish,
+    noteInfoText:
+      "For more information on the terms, procedures and features of the operation, please refer to the official information memorandum.",
+    noteInfoCTA: "📄 Read the information memorandum ↓",
   },
 } as const;
 
+// ============================================================
+// COMPOSANTS
+// ============================================================
 function Brand({ onHome, label }: { onHome: () => void; label: string }) {
   return (
     <a
@@ -394,6 +636,9 @@ function HomeIcon() {
   );
 }
 
+// ============================================================
+// COMPOSANT PRINCIPAL
+// ============================================================
 export default function Home() {
   const [language, setLanguage] = useState<Language>("fr");
   const [activeSlide, setActiveSlide] = useState(0);
@@ -403,7 +648,8 @@ export default function Home() {
   const t = translations[language];
   const navigationItems =
     language === "fr" ? navigation : translations.en.navigation;
-  const pages = language === "fr" ? operationPages : translations.en.operationPages;
+  const pages =
+    language === "fr" ? operationPages : translations.en.operationPages;
   const intro = t.intro;
 
   const currentSlide = slides[activeSlide];
@@ -467,7 +713,11 @@ export default function Home() {
         </div>
 
         <nav className="top-links" aria-label={t.topNavigation}>
-          <div className="language-switch" role="group" aria-label={t.languageLabel}>
+          <div
+            className="language-switch"
+            role="group"
+            aria-label={t.languageLabel}
+          >
             <button
               aria-label={t.switchToFrench}
               aria-pressed={language === "fr"}
@@ -566,10 +816,7 @@ export default function Home() {
         /* ===== VUE ACCUEIL ===== */
         <div className="home-full-layout">
           <div className="carousel full-width-carousel">
-            <img
-              src={currentImage}
-              alt={t.slideAlts[activeSlide]}
-            />
+            <img src={currentImage} alt={t.slideAlts[activeSlide]} />
           </div>
 
           <div className="intro-copy full-width-text">
@@ -579,13 +826,18 @@ export default function Home() {
           <div className="home-split-layout">
             <div className="home-left-column">
               <aside className="sidebar">
-                <nav
-                  className="side-navigation"
-                  aria-label={t.siteNavigation}
-                >
+                <nav className="side-navigation" aria-label={t.siteNavigation}>
                   <button
-                    aria-current={activePage === null && !showSubscriptionPage ? "page" : undefined}
-                    className={`home-link${activePage === null && !showSubscriptionPage ? " active" : ""}`}
+                    aria-current={
+                      activePage === null && !showSubscriptionPage
+                        ? "page"
+                        : undefined
+                    }
+                    className={`home-link${
+                      activePage === null && !showSubscriptionPage
+                        ? " active"
+                        : ""
+                    }`}
                     onClick={handleHomeClick}
                     type="button"
                   >
@@ -596,7 +848,9 @@ export default function Home() {
                   {navigationItems.map((item, index) => (
                     <button
                       aria-current={activePage === index ? "page" : undefined}
-                      className={`side-link${activePage === index ? " active" : ""}`}
+                      className={`side-link${
+                        activePage === index ? " active" : ""
+                      }`}
                       key={item}
                       onClick={() => {
                         setActivePage(index);
@@ -623,7 +877,11 @@ export default function Home() {
                   <form className="contact-form" onSubmit={handleContactSubmit}>
                     <label>
                       <span>{t.lastName}</span>
-                      <input aria-label={t.lastName} name="contact-name" required />
+                      <input
+                        aria-label={t.lastName}
+                        name="contact-name"
+                        required
+                      />
                     </label>
                     <label>
                       <span>{t.firstName}</span>
@@ -660,7 +918,8 @@ export default function Home() {
                   </form>
 
                   <p className="contact-email">
-                    {t.directEmail}<br />
+                    {t.directEmail}
+                    <br />
                     <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
                   </p>
                 </section>
@@ -709,7 +968,10 @@ export default function Home() {
                             </span>
                           ) : (
                             <div className="resource-arrow-wrapper">
-                              <span aria-hidden="true" className="resource-arrow">
+                              <span
+                                aria-hidden="true"
+                                className="resource-arrow"
+                              >
                                 ↓
                               </span>
                             </div>
@@ -718,7 +980,6 @@ export default function Home() {
                       </>
                     );
 
-                    // Ressource désactivée → div non cliquable
                     if (item.disabled) {
                       return (
                         <div
@@ -732,7 +993,6 @@ export default function Home() {
                       );
                     }
 
-                    // Ressource active → lien normal
                     return (
                       <a
                         className="resource-card"
@@ -757,8 +1017,14 @@ export default function Home() {
           <aside className="sidebar">
             <nav className="side-navigation" aria-label={t.siteNavigation}>
               <button
-                aria-current={activePage === null && !showSubscriptionPage ? "page" : undefined}
-                className={`home-link${activePage === null && !showSubscriptionPage ? " active" : ""}`}
+                aria-current={
+                  activePage === null && !showSubscriptionPage
+                    ? "page"
+                    : undefined
+                }
+                className={`home-link${
+                  activePage === null && !showSubscriptionPage ? " active" : ""
+                }`}
                 onClick={handleHomeClick}
                 type="button"
               >
@@ -769,7 +1035,9 @@ export default function Home() {
               {navigationItems.map((item, index) => (
                 <button
                   aria-current={activePage === index ? "page" : undefined}
-                  className={`side-link${activePage === index ? " active" : ""}`}
+                  className={`side-link${
+                    activePage === index ? " active" : ""
+                  }`}
                   key={item}
                   onClick={() => {
                     setActivePage(index);
@@ -796,7 +1064,11 @@ export default function Home() {
               <form className="contact-form" onSubmit={handleContactSubmit}>
                 <label>
                   <span>{t.lastName}</span>
-                  <input aria-label={t.lastName} name="contact-name" required />
+                  <input
+                    aria-label={t.lastName}
+                    name="contact-name"
+                    required
+                  />
                 </label>
                 <label>
                   <span>{t.firstName}</span>
@@ -832,7 +1104,8 @@ export default function Home() {
                 )}
               </form>
               <p className="contact-email">
-                {t.directEmail}<br />
+                {t.directEmail}
+                <br />
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </p>
             </section>
@@ -850,7 +1123,9 @@ export default function Home() {
               <div className="carousel-dots section-dots">
                 {pages.map((page, index) => (
                   <button
-                    aria-label={`${language === "fr" ? "Afficher" : "Show"}: ${page.title}`}
+                    aria-label={`${
+                      language === "fr" ? "Afficher" : "Show"
+                    }: ${page.title}`}
                     aria-pressed={activePage === index}
                     className={activePage === index ? "active" : ""}
                     key={page.title}
@@ -859,26 +1134,67 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <p className="section-eyebrow">
-                {pages[activePage].eyebrow}
-              </p>
+              <p className="section-eyebrow">{pages[activePage].eyebrow}</p>
               <h1 id="section-title">{pages[activePage].title}</h1>
-              <p className="section-intro">
-                {pages[activePage].intro}
-              </p>
+              <p className="section-intro">{pages[activePage].intro}</p>
               <div className="section-cards">
                 {pages[activePage].blocks.map((block, index) => (
-                  <section className="section-card" key={block.title}>
+                  <section className="section-card" key={index}>
                     <span className="section-card-number">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      <h2>{block.title}</h2>
-                      <p>{block.text}</p>
+                      {block.title && <h2>{block.title}</h2>}
+                      {block.text && <p>{block.text}</p>}
+
+                      {block.list && (
+                        <ul className="section-card-list">
+                          {block.list.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {block.link && !block.disabled && (
+                        <a
+                          className="section-card-download"
+                          href={block.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {block.linkLabel || t.downloadPdf}
+                        </a>
+                      )}
+
+                      {block.link && block.disabled && (
+                        <span className="section-card-disabled-badge">
+                          {t.resourceDisabledLabel}
+                        </span>
+                      )}
                     </div>
                   </section>
                 ))}
               </div>
+
+              {pages[activePage].noteLink && (
+                <aside className="section-note-cta">
+                  <div className="section-note-icon" aria-hidden="true">
+                    📄
+                  </div>
+                  <div className="section-note-body">
+                    <p className="section-note-text">{t.noteInfoText}</p>
+                    <a
+                      className="section-note-button"
+                      href={NOTE_INFO_PDF}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {t.noteInfoCTA}
+                    </a>
+                  </div>
+                </aside>
+              )}
+
               <button
                 className="section-back"
                 onClick={() => setActivePage(null)}
@@ -901,7 +1217,9 @@ export default function Home() {
         </div>
         <div className="footer-bottom">
           <div className="footer-copyright">
-            <p>© {new Date().getFullYear()} APE BIDC. {t.allRightsReserved}</p>
+            <p>
+              © {new Date().getFullYear()} APE BIDC. {t.allRightsReserved}
+            </p>
             <p>{t.footerDescription}</p>
           </div>
         </div>
