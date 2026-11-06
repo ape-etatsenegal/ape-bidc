@@ -45,7 +45,6 @@ const navigation = [
   "Médiathèque",
 ];
 
-// ✅ Ressource "Dépliant" désactivée
 const resources = [
   {
     title: "Bulletin de souscription Senior",
@@ -59,7 +58,7 @@ const resources = [
     image: "/depliant.png",
     alt: "Dépliant de l'opération",
     pdf: "/pdf/depliant.pdf",
-    disabled: true,
+    disabled: true, // 👈 DÉSACTIVÉ
   },
   {
     title: "Note d'information",
@@ -70,9 +69,9 @@ const resources = [
   },
 ];
 
-// ✅ Période de souscription : 05 octobre → 04 décembre
+// ✅ MODIFIÉ : Période de souscription du 05 novembre au 04 décembre 2026
 const marqueeItems = [
-  "📢 Période de souscription ouverte — Du 05 octobre au 04 décembre 2026",
+  "📢 Période de souscription ouverte — Du 05 novembre au 04 décembre 2026",
   "💰 Prix d'émission : 10 000 FCFA par part",
   "📍 Souscrivez auprès de votre SGI partenaire",
   "📞 Plus d'infos : fctc-bidc-ebid@contact.sn",
@@ -302,9 +301,9 @@ const translations = {
       "Modern architecture in the heart of the city",
       "Bright workspace",
     ],
-    // ✅ Période de souscription EN
+    // ✅ MODIFIÉ : Période de souscription en anglais
     marqueeItems: [
-      "📢 Subscription period open — 5 October to 4 December 2026",
+      "📢 Subscription period open — 5 November to 4 December 2026",
       "💰 Issue price: CFAF 10,000 per unit",
       "📍 Subscribe through your partner brokerage firm",
       "📞 More information: fctc-bidc-ebid@contact.sn",
@@ -687,7 +686,6 @@ export default function Home() {
                   <p className="resources-intro">{t.resourcesIntro}</p>
                 </div>
 
-                {/* Grille des ressources avec gestion du bouton désactivé */}
                 <div className="resources-grid">
                   {resources.map((item, index) => {
                     const content = (
