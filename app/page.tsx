@@ -71,9 +71,9 @@ const resources = [
   },
 ];
 
-// ✅ Utilise CONTACT_EMAIL (plus d'adresse codée en dur)
+// ✅ Période mise à jour : 5 novembre → 4 décembre
 const marqueeItems = [
-  "📢 Période de souscription ouverte — Du 28 octobre au 30 novembre 2026",
+  "📢 Période de souscription ouverte — Du 5 novembre au 4 décembre 2026",
   "💰 Prix d'émission : 10 000 FCFA par part",
   "📍 Souscrivez auprès de votre SGI partenaire",
   `📞 Plus d'infos : ${CONTACT_EMAIL}`,
@@ -303,9 +303,9 @@ const translations = {
       "Modern architecture in the heart of the city",
       "Bright workspace",
     ],
-    // ✅ Utilise CONTACT_EMAIL (plus d'adresse codée en dur)
+    // ✅ Période mise à jour : 5 novembre → 4 décembre
     marqueeItems: [
-      "📢 Subscription period open — 28 October to 30 November 2026",
+      "📢 Subscription period open — 5 November to 4 December 2026",
       "💰 Issue price: CFAF 10,000 per unit",
       "📍 Subscribe through your partner brokerage firm",
       `📞 More information: ${CONTACT_EMAIL}`,
